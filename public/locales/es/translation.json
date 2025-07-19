@@ -99,7 +99,8 @@
       },
       "email": {
         "required": "El correo electrónico es obligatorio",
-        "invalid": "Por favor ingrese una dirección de correo electrónico válida"
+        "invalid": "Por favor ingrese una dirección de correo electrónico válida",
+        "exists": "Ya existe una cuenta con este correo electrónico"
       },
       "password": {
         "required": "La contraseña es obligatoria",
@@ -110,8 +111,17 @@
         "required": "Por favor confirme su contraseña",
         "match": "Las contraseñas no coinciden"
       },
-      "termsAccepted": "Debe aceptar los Términos de servicio",
-      "privacyAccepted": "Debe aceptar la Política de privacidad"
+      "terms": {
+        "required": "Debe aceptar los Términos de servicio"
+      },
+      "privacy": {
+        "required": "Debe aceptar la Política de privacidad"
+      },
+      "login": {
+        "invalid": "Email o contraseña incorrectos. Inténtalo de nuevo."
+      },
+      "generic": "Error en el registro. Por favor, inténtelo de nuevo.",
+      "network": "Error de red. Verifique su conexión e inténtelo de nuevo."
     },
     "passwordStrength": {
       "label": "Seguridad de la contraseña:",
@@ -129,9 +139,26 @@
       "terms": "Términos de servicio",
       "privacy": "Política de privacidad"
     },
+    "welcome": {
+      "title": "Crea tu cuenta",
+      "subtitle": "Únete a miles de familias que descubren el aprendizaje seguro impulsado por IA",
+      "loginTitle": "¡Bienvenido de vuelta!",
+      "loginSubtitle": "Inicia sesión para continuar el viaje de aprendizaje de tu hijo"
+    },
+    "passwordMatch": {
+      "success": "¡Las contraseñas coinciden!",
+      "mismatch": "Las contraseñas no coinciden"
+    },
     "buttons": {
+      "back": "Atrás",
       "createAccount": "Crear cuenta segura",
-      "creatingAccount": "Creando cuenta..."
+      "creatingAccount": "Creando cuenta...",
+      "signIn": "Iniciar sesión",
+      "signingIn": "Iniciando sesión..."
+    },
+    "success": {
+      "title": "¡Cuenta creada exitosamente!",
+      "message": "Bienvenido al Árbol del Conocimiento. Ahora está listo para crear el perfil de su hijo."
     },
     "securityNote": "Su información está encriptada y almacenada de forma segura. Nunca compartimos sus datos with terceros."
   },
@@ -168,7 +195,10 @@
         "min": "La edad debe ser de al menos 5 años",
         "max": "La edad debe ser de 15 años o menos"
       },
-      "parentalConsent": "Se requiere el consentimiento de los padres para crear un perfil de niño"
+      "parentalConsent": "Se requiere el consentimiento de los padres para crear un perfil de niño",
+      "authentication": "Por favor inicie sesión para crear un perfil de niño",
+      "generic": "Error al crear el perfil del niño. Por favor intente de nuevo.",
+      "network": "Error de red. Por favor verifique su conexión e intente de nuevo."
     },
     "ageGroups": {
       "earlyElementary": "Primaria temprana (5-7)",

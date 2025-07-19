@@ -6,19 +6,19 @@ async function main() {
   // Create the three MVP domains
   const domains = [
     {
-      name: "Science & Technology",
+      name: "science-technology",
       description:
         "Explore the wonders of science, from space and dinosaurs to simple machines and electricity.",
       isActive: true,
     },
     {
-      name: "Nature & Environment",
+      name: "nature-environment",
       description:
         "Learn about our natural world, including animals, plants, ecosystems, and environmental protection.",
       isActive: true,
     },
     {
-      name: "Math & Logic",
+      name: "math-logic",
       description:
         "Discover the magic of numbers, shapes, patterns, and problem-solving.",
       isActive: true,

@@ -20,6 +20,7 @@ interface ChildProfileCreationProps {
 }
 
 interface ChildProfileData {
+  id?: string; // Optional ID from database after creation
   displayName: string;
   age: number;
   parentalConsent: boolean;
@@ -95,28 +96,76 @@ export function ChildProfileCreation({
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual API call to create child profile
-      // const response = await fetch('/api/child-profiles', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
+      // Call the child profile creation API
+      const response = await fetch("/api/child-profiles", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          displayName: formData.displayName.trim(),
+          age: formData.age,
+          parentalConsent: formData.parentalConsent,
+        }),
+      });
 
-      // Simulate API call for now
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle specific error cases
+        if (response.status === 401) {
+          setErrors({
+            displayName: t("childProfileCreation.errors.authentication"),
+          });
+        } else if (response.status === 400) {
+          // Server-side validation errors
+          if (data.error?.includes("Display name")) {
+            setErrors({
+              displayName: data.error,
+            });
+          } else if (data.error?.includes("Age")) {
+            setErrors({
+              age: data.error,
+            });
+          } else if (data.error?.includes("consent")) {
+            setErrors({
+              parentalConsent: data.error,
+            });
+          } else {
+            setErrors({
+              displayName:
+                data.error || t("childProfileCreation.errors.generic"),
+            });
+          }
+        } else {
+          // Generic error handling
+          setErrors({
+            displayName: data.error || t("childProfileCreation.errors.generic"),
+          });
+        }
+        return;
+      }
+
+      // Profile creation successful
+      console.log("Child profile created successfully:", data);
 
       // Pass the child data to the parent component
-      onComplete(formData);
+      onComplete({
+        ...formData,
+        id: data.child.id, // Include the database ID
+      });
     } catch (error) {
       console.error("Child profile creation error:", error);
-      // Handle error
+      setErrors({
+        displayName: t("childProfileCreation.errors.network"),
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   const handleInputChange = (
-    field: keyof ChildProfileData,
+    field: keyof Omit<ChildProfileData, "id">,
     value: string | number | boolean
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));

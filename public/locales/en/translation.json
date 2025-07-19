@@ -99,7 +99,8 @@
       },
       "email": {
         "required": "Email is required",
-        "invalid": "Please enter a valid email address"
+        "invalid": "Please enter a valid email address",
+        "exists": "An account with this email already exists"
       },
       "password": {
         "required": "Password is required",
@@ -110,8 +111,17 @@
         "required": "Please confirm your password",
         "match": "Passwords do not match"
       },
-      "termsAccepted": "You must accept the Terms of Service",
-      "privacyAccepted": "You must accept the Privacy Policy"
+      "terms": {
+        "required": "You must accept the Terms of Service"
+      },
+      "privacy": {
+        "required": "You must accept the Privacy Policy"
+      },
+      "login": {
+        "invalid": "Invalid email or password. Please try again."
+      },
+      "generic": "Registration failed. Please try again.",
+      "network": "Network error. Please check your connection and try again."
     },
     "passwordStrength": {
       "label": "Password strength:",
@@ -129,9 +139,26 @@
       "terms": "Terms of Service",
       "privacy": "Privacy Policy"
     },
+    "welcome": {
+      "title": "Create Your Account",
+      "subtitle": "Join thousands of families discovering safe, AI-powered learning",
+      "loginTitle": "Welcome Back!",
+      "loginSubtitle": "Sign in to continue your child's learning journey"
+    },
+    "passwordMatch": {
+      "success": "Passwords match!",
+      "mismatch": "Passwords don't match"
+    },
     "buttons": {
+      "back": "Back",
       "createAccount": "Create Secure Account",
-      "creatingAccount": "Creating Account..."
+      "creatingAccount": "Creating Account...",
+      "signIn": "Sign In",
+      "signingIn": "Signing In..."
+    },
+    "success": {
+      "title": "Account Created Successfully!",
+      "message": "Welcome to the Tree of Knowledge. You're now ready to create your child's profile."
     },
     "securityNote": "Your information is <strong>encrypted and stored securely</strong>. We never share your data with third parties."
   },
@@ -168,7 +195,10 @@
         "min": "Age must be at least 5 years old",
         "max": "Age must be 15 years old or younger"
       },
-      "parentalConsent": "Parental consent is required to create a child profile"
+      "parentalConsent": "Parental consent is required to create a child profile",
+      "authentication": "Please sign in to create a child profile",
+      "generic": "Failed to create child profile. Please try again.",
+      "network": "Network error. Please check your connection and try again."
     },
     "ageGroups": {
       "earlyElementary": "Early Elementary (5-7)",

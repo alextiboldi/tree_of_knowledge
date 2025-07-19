@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 interface DomainSelectionProps {
   childName: string;
+  childId?: string;
   onComplete: (selectedDomains: string[]) => void;
   onBack: () => void;
 }
@@ -32,6 +33,7 @@ interface Domain {
 
 export function DomainSelection({
   childName,
+  childId,
   onComplete,
   onBack,
 }: DomainSelectionProps) {
@@ -105,26 +107,34 @@ export function DomainSelection({
   };
 
   const handleSubmit = async () => {
-    if (selectedDomains.length === 0) {
+    if (selectedDomains.length === 0 || !childId) {
       return;
     }
 
     setIsLoading(true);
 
     try {
-      // TODO: Implement actual API call to save domain selections
-      // const response = await fetch('/api/child-profiles/domains', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ domains: selectedDomains }),
-      // });
+      // Call the domain selection API
+      const response = await fetch(`/api/child-profiles/${childId}/domains`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ domains: selectedDomains }),
+      });
 
-      // Simulate API call for now
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const data = await response.json();
+
+      if (!response.ok) {
+        console.error("Domain selection failed:", data.error);
+        // For now, continue anyway - this is non-critical for the onboarding flow
+      } else {
+        console.log("Domain selection successful:", data);
+      }
 
       onComplete(selectedDomains);
     } catch (error) {
       console.error("Domain selection error:", error);
+      // Continue with onboarding even if domain selection fails
+      onComplete(selectedDomains);
     } finally {
       setIsLoading(false);
     }

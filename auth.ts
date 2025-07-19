@@ -2,15 +2,35 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
+import { authConfig } from "./auth.config";
 
 const prisma = new PrismaClient();
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
+  ...authConfig,
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
     maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.name = user.name;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id as string;
+        session.user.email = token.email as string;
+        session.user.name = token.name as string;
+      }
+      return session;
+    },
+    ...authConfig.callbacks,
   },
   providers: [
     Credentials({
@@ -29,10 +49,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error("Missing email or password");
+          return null;
         }
 
         try {
+          // Dynamic import bcrypt only when needed (server-side only)
+          const bcrypt = await import("bcrypt");
+
           // Find parent by email
           const parent = await prisma.parent.findUnique({
             where: {
@@ -41,7 +64,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           });
 
           if (!parent) {
-            throw new Error("Invalid email or password");
+            return null;
           }
 
           // Verify password
@@ -51,7 +74,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           );
 
           if (!isValidPassword) {
-            throw new Error("Invalid email or password");
+            return null;
           }
 
           // Return user object (without password hash)
@@ -62,34 +85,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           };
         } catch (error) {
           console.error("Auth error:", error);
-          throw new Error("Authentication failed");
+          return null;
         }
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      // Persist the OAuth access_token to the token right after signin
-      if (user) {
-        token.id = user.id;
-        token.email = user.email;
-        token.name = user.name;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      // Send properties to the client
-      if (token) {
-        session.user.id = token.id as string;
-        session.user.email = token.email as string;
-        session.user.name = token.name as string;
-      }
-      return session;
-    },
-  },
-  pages: {
-    signIn: "/auth/signin",
-    error: "/auth/error",
-  },
   debug: process.env.NODE_ENV === "development",
 });

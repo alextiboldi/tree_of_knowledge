@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,6 +44,7 @@ export function ParentRegistration({
   onSuccess,
 }: ParentRegistrationProps) {
   const { t } = useTranslation();
+  const [isLoginMode, setIsLoginMode] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     parentName: "",
     email: "",
@@ -60,16 +62,7 @@ export function ParentRegistration({
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
 
-    // Parent name validation
-    if (!formData.parentName.trim()) {
-      newErrors.parentName = t("parentRegistration.errors.parentName.required");
-    } else if (formData.parentName.trim().length < 2) {
-      newErrors.parentName = t(
-        "parentRegistration.errors.parentName.minLength"
-      );
-    }
-
-    // Email validation
+    // Email validation (always required)
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email.trim()) {
       newErrors.email = t("parentRegistration.errors.email.required");
@@ -77,34 +70,52 @@ export function ParentRegistration({
       newErrors.email = t("parentRegistration.errors.email.invalid");
     }
 
-    // Password validation
+    // Password validation (always required)
     if (!formData.password) {
       newErrors.password = t("parentRegistration.errors.password.required");
-    } else if (formData.password.length < 8) {
+    } else if (!isLoginMode && formData.password.length < 8) {
       newErrors.password = t("parentRegistration.errors.password.minLength");
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)) {
+    } else if (
+      !isLoginMode &&
+      !/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/.test(formData.password)
+    ) {
       newErrors.password = t("parentRegistration.errors.password.strength");
     }
 
-    // Confirm password validation
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = t(
-        "parentRegistration.errors.confirmPassword.required"
-      );
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = t(
-        "parentRegistration.errors.confirmPassword.match"
-      );
-    }
+    // Registration-only validations
+    if (!isLoginMode) {
+      // Parent name validation
+      if (!formData.parentName.trim()) {
+        newErrors.parentName = t(
+          "parentRegistration.errors.parentName.required"
+        );
+      } else if (formData.parentName.trim().length < 2) {
+        newErrors.parentName = t(
+          "parentRegistration.errors.parentName.minLength"
+        );
+      }
 
-    // Legal acceptance validation
-    if (!formData.termsAccepted) {
-      newErrors.termsAccepted = t("parentRegistration.errors.termsAccepted");
-    }
-    if (!formData.privacyAccepted) {
-      newErrors.privacyAccepted = t(
-        "parentRegistration.errors.privacyAccepted"
-      );
+      // Confirm password validation
+      if (!formData.confirmPassword) {
+        newErrors.confirmPassword = t(
+          "parentRegistration.errors.confirmPassword.required"
+        );
+      } else if (formData.password !== formData.confirmPassword) {
+        newErrors.confirmPassword = t(
+          "parentRegistration.errors.confirmPassword.match"
+        );
+      }
+
+      // Terms and privacy validation
+      if (!formData.termsAccepted) {
+        newErrors.termsAccepted = t("parentRegistration.errors.terms.required");
+      }
+
+      if (!formData.privacyAccepted) {
+        newErrors.privacyAccepted = t(
+          "parentRegistration.errors.privacy.required"
+        );
+      }
     }
 
     setErrors(newErrors);
@@ -116,35 +127,114 @@ export function ParentRegistration({
     value: string | boolean
   ) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
-    // Clear error when user starts typing
+    // Clear error for this field when user starts typing
     if (errors[field]) {
       setErrors((prev) => ({ ...prev, [field]: undefined }));
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
+  const handleLogin = async (): Promise<void> => {
     if (!validateForm()) {
       return;
     }
 
     setIsLoading(true);
 
-    // Simulate API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const signInResult = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
 
-      // In real implementation, this would be an actual API call
-      console.log("Registration data:", formData);
+      if (signInResult?.error) {
+        setErrors({
+          email: t("parentRegistration.errors.login.invalid"),
+        });
+        return;
+      }
 
-      // Simulate success
+      onSuccess();
+    } catch (error) {
+      console.error("Login failed:", error);
+      setErrors({
+        email: t("parentRegistration.errors.network"),
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleRegister = async (): Promise<void> => {
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Call the actual registration API
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+          name: formData.parentName,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle specific error cases
+        if (response.status === 409) {
+          setErrors({ email: t("parentRegistration.errors.email.exists") });
+        } else {
+          // Generic error handling
+          setErrors({
+            email: data.error || t("parentRegistration.errors.generic"),
+          });
+        }
+        return;
+      }
+
+      // Registration successful - now sign the user in
+      console.log("Registration successful:", data);
+
+      // Automatically sign in the user
+      const signInResult = await signIn("credentials", {
+        email: formData.email,
+        password: formData.password,
+        redirect: false,
+      });
+
+      if (signInResult?.error) {
+        console.error("Auto sign-in failed:", signInResult.error);
+        // Still call onSuccess as registration was successful
+        // User can manually sign in later
+      }
+
       onSuccess();
     } catch (error) {
       console.error("Registration failed:", error);
-      // Handle registration error
+      setErrors({
+        email: t("parentRegistration.errors.network"),
+      });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
+    e.preventDefault();
+
+    if (isLoginMode) {
+      await handleLogin();
+    } else {
+      await handleRegister();
     }
   };
 
@@ -160,78 +250,128 @@ export function ParentRegistration({
 
   const passwordStrength = getPasswordStrength(formData.password);
 
+  const strengthColors = [
+    "",
+    "bg-red-500",
+    "bg-orange-500",
+    "bg-yellow-500",
+    "bg-blue-500",
+    "bg-green-500",
+  ];
+  const strengthLabels = ["", "Very Weak", "Weak", "Fair", "Good", "Strong"];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-blue-50 to-purple-50 p-4 parent-interface">
-      <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8 animate-fade-in">
+      <div className="max-w-md mx-auto">
+        {/* Header with Back Button */}
+        <div className="flex items-center gap-4 mb-8 animate-fade-in">
           <Button
-            variant="ghost"
+            variant="outline"
+            size="sm"
             onClick={onBack}
-            className="absolute left-4 top-4 sm:relative sm:left-0 sm:top-0 mb-4 text-parent-sm font-medium transition-all duration-200 hover:scale-105"
+            className="flex items-center gap-2 text-parent-sm font-medium transition-all duration-200 hover:scale-105"
           >
-            <ArrowLeft className="h-4 w-4 mr-2" />
-            {t("parentRegistration.backButton")}
+            <ArrowLeft className="h-4 w-4" />
+            {t("parentRegistration.buttons.back")}
           </Button>
-
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <TreePine className="h-8 w-8 text-primary" />
-            <h1 className="text-parent-3xl font-semibold text-primary">
+          <div className="flex items-center gap-2">
+            <TreePine className="h-6 w-6 text-primary" />
+            <span className="text-parent-lg font-semibold text-primary">
               {t("parentRegistration.title")}
-            </h1>
+            </span>
           </div>
-          <p className="text-parent-lg text-muted-foreground">
-            {t("parentRegistration.subtitle")}
-          </p>
         </div>
 
-        {/* Registration Form */}
-        <Card className="shadow-xl border-2 border-primary/20 animate-scale-in">
-          <CardHeader className="bg-gradient-to-r from-emerald-50 to-blue-50">
-            <CardTitle className="text-parent-xl font-semibold flex items-center gap-2">
-              <Shield className="h-5 w-5 text-green-600" />
-              {t("parentRegistration.formTitle")}
+        {/* Main Registration Card */}
+        <Card
+          className="w-full shadow-lg animate-scale-in border-primary/10"
+          style={{ animationDelay: "0.1s" }}
+        >
+          <CardHeader className="text-center bg-gradient-to-r from-primary to-emerald-600 text-white rounded-t-lg">
+            <CardTitle className="text-parent-xl font-bold tracking-wider">
+              {isLoginMode
+                ? t("parentRegistration.welcome.loginTitle")
+                : t("parentRegistration.welcome.title")}
             </CardTitle>
+            <p className="text-parent-sm text-white/90 mt-2">
+              {isLoginMode
+                ? t("parentRegistration.welcome.loginSubtitle")
+                : t("parentRegistration.welcome.subtitle")}
+            </p>
           </CardHeader>
+
           <CardContent className="p-6">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Parent Name */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="parentName"
-                  className="text-parent-sm font-medium text-gray-700"
-                >
-                  {t("parentRegistration.labels.parentName")}
-                </label>
-                <Input
-                  id="parentName"
-                  type="text"
-                  value={formData.parentName}
-                  onChange={(e) =>
-                    handleInputChange("parentName", e.target.value)
-                  }
-                  placeholder={t("parentRegistration.placeholders.parentName")}
-                  className={`text-parent-base transition-all duration-200 focus:scale-105 ${
-                    errors.parentName
-                      ? "border-red-500 focus:border-red-500"
-                      : ""
-                  }`}
-                />
-                {errors.parentName && (
-                  <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
-                    <AlertCircle className="h-3 w-3" />
-                    {errors.parentName}
-                  </p>
-                )}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Mode Toggle */}
+              <div className="text-center mb-6">
+                <div className="flex bg-gray-100 rounded-lg p-1">
+                  <button
+                    type="button"
+                    onClick={() => setIsLoginMode(false)}
+                    className={`flex-1 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                      !isLoginMode
+                        ? "bg-white text-primary shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    Create Account
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsLoginMode(true)}
+                    className={`flex-1 py-2 text-sm font-medium rounded-md transition-all duration-200 ${
+                      isLoginMode
+                        ? "bg-white text-primary shadow-sm"
+                        : "text-gray-600 hover:text-gray-900"
+                    }`}
+                  >
+                    Sign In
+                  </button>
+                </div>
               </div>
 
-              {/* Email */}
+              {/* Parent Name (Registration only) */}
+              {!isLoginMode && (
+                <div className="space-y-2">
+                  <label
+                    htmlFor="parentName"
+                    className="text-parent-sm font-medium text-gray-700"
+                  >
+                    {t("parentRegistration.labels.parentName")} *
+                  </label>
+                  <Input
+                    id="parentName"
+                    type="text"
+                    value={formData.parentName}
+                    onChange={(e) =>
+                      handleInputChange("parentName", e.target.value)
+                    }
+                    placeholder={t(
+                      "parentRegistration.placeholders.parentName"
+                    )}
+                    className={`text-parent-sm ${
+                      errors.parentName
+                        ? "border-red-500 focus:ring-red-500"
+                        : ""
+                    }`}
+                    disabled={isLoading}
+                  />
+                  {errors.parentName && (
+                    <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
+                      <AlertCircle className="h-3 w-3" />
+                      {errors.parentName}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              {/* Email Address */}
               <div className="space-y-2">
                 <label
                   htmlFor="email"
                   className="text-parent-sm font-medium text-gray-700"
                 >
-                  {t("parentRegistration.labels.email")}
+                  {t("parentRegistration.labels.email")} *
                 </label>
                 <Input
                   id="email"
@@ -239,9 +379,10 @@ export function ParentRegistration({
                   value={formData.email}
                   onChange={(e) => handleInputChange("email", e.target.value)}
                   placeholder={t("parentRegistration.placeholders.email")}
-                  className={`text-parent-base transition-all duration-200 focus:scale-105 ${
-                    errors.email ? "border-red-500 focus:border-red-500" : ""
+                  className={`text-parent-sm ${
+                    errors.email ? "border-red-500 focus:ring-red-500" : ""
                   }`}
+                  disabled={isLoading}
                 />
                 {errors.email && (
                   <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
@@ -257,7 +398,7 @@ export function ParentRegistration({
                   htmlFor="password"
                   className="text-parent-sm font-medium text-gray-700"
                 >
-                  {t("parentRegistration.labels.password")}
+                  {t("parentRegistration.labels.password")} *
                 </label>
                 <div className="relative">
                   <Input
@@ -268,238 +409,212 @@ export function ParentRegistration({
                       handleInputChange("password", e.target.value)
                     }
                     placeholder={t("parentRegistration.placeholders.password")}
-                    className={`text-parent-base pr-10 transition-all duration-200 focus:scale-105 ${
-                      errors.password
-                        ? "border-red-500 focus:border-red-500"
-                        : ""
+                    className={`text-parent-sm pr-10 ${
+                      errors.password ? "border-red-500 focus:ring-red-500" : ""
                     }`}
+                    disabled={isLoading}
                   />
-                  <Button
+                  <button
                     type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent transition-all duration-200 hover:scale-110"
                     onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
                   >
                     {showPassword ? (
-                      <EyeOff className="h-4 w-4 text-gray-500" />
+                      <EyeOff className="h-4 w-4" />
                     ) : (
-                      <Eye className="h-4 w-4 text-gray-500" />
+                      <Eye className="h-4 w-4" />
                     )}
-                  </Button>
+                  </button>
                 </div>
-
-                {/* Password Strength Indicator */}
-                {formData.password && (
-                  <div className="space-y-2 animate-fade-in">
-                    <div className="flex gap-1">
-                      {[1, 2, 3, 4, 5].map((level) => (
-                        <div
-                          key={level}
-                          className={`h-1 flex-1 rounded transition-all duration-300 ${
-                            level <= passwordStrength
-                              ? level <= 2
-                                ? "bg-red-500"
-                                : level <= 3
-                                ? "bg-yellow-500"
-                                : level <= 4
-                                ? "bg-blue-500"
-                                : "bg-green-500"
-                              : "bg-gray-200"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <p className="text-parent-xs text-gray-600">
-                      {t("parentRegistration.passwordStrength.label")}{" "}
-                      <span
-                        className={`font-medium ${
-                          passwordStrength <= 2
-                            ? "text-red-600"
-                            : passwordStrength <= 3
-                            ? "text-yellow-600"
-                            : passwordStrength <= 4
-                            ? "text-blue-600"
-                            : "text-green-600"
-                        }`}
-                      >
-                        {passwordStrength <= 2
-                          ? t("parentRegistration.passwordStrength.weak")
-                          : passwordStrength <= 3
-                          ? t("parentRegistration.passwordStrength.fair")
-                          : passwordStrength <= 4
-                          ? t("parentRegistration.passwordStrength.good")
-                          : t("parentRegistration.passwordStrength.strong")}
-                      </span>
-                    </p>
-                  </div>
-                )}
-
                 {errors.password && (
                   <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
                     <AlertCircle className="h-3 w-3" />
                     {errors.password}
                   </p>
                 )}
-              </div>
 
-              {/* Confirm Password */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="confirmPassword"
-                  className="text-parent-sm font-medium text-gray-700"
-                >
-                  {t("parentRegistration.labels.confirmPassword")}
-                </label>
-                <div className="relative">
-                  <Input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? "text" : "password"}
-                    value={formData.confirmPassword}
-                    onChange={(e) =>
-                      handleInputChange("confirmPassword", e.target.value)
-                    }
-                    placeholder={t(
-                      "parentRegistration.placeholders.confirmPassword"
-                    )}
-                    className={`text-parent-base pr-10 transition-all duration-200 focus:scale-105 ${
-                      errors.confirmPassword
-                        ? "border-red-500 focus:border-red-500"
-                        : ""
-                    }`}
-                  />
-                  <Button
-                    type="button"
-                    variant="ghost"
-                    size="sm"
-                    className="absolute right-0 top-0 h-full px-3 hover:bg-transparent transition-all duration-200 hover:scale-110"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                  >
-                    {showConfirmPassword ? (
-                      <EyeOff className="h-4 w-4 text-gray-500" />
-                    ) : (
-                      <Eye className="h-4 w-4 text-gray-500" />
-                    )}
-                  </Button>
-                </div>
-                {formData.confirmPassword &&
-                  formData.password === formData.confirmPassword && (
-                    <p className="text-parent-xs text-green-600 flex items-center gap-1 animate-slide-in-left">
-                      <CheckCircle className="h-3 w-3" />
-                      {t("parentRegistration.passwordsMatch")}
+                {/* Password Strength Indicator (Registration only) */}
+                {!isLoginMode && formData.password && (
+                  <div className="space-y-1">
+                    <div className="flex gap-1">
+                      {[1, 2, 3, 4, 5].map((level) => (
+                        <div
+                          key={level}
+                          className={`h-1 flex-1 rounded-full transition-colors duration-300 ${
+                            level <= passwordStrength
+                              ? strengthColors[passwordStrength]
+                              : "bg-gray-200"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-parent-xs text-gray-600">
+                      {t("parentRegistration.passwordStrength.label")}:{" "}
+                      <span
+                        className={`font-medium ${
+                          passwordStrength >= 4
+                            ? "text-green-600"
+                            : "text-orange-600"
+                        }`}
+                      >
+                        {strengthLabels[passwordStrength] || "Very Weak"}
+                      </span>
                     </p>
-                  )}
-                {errors.confirmPassword && (
-                  <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
-                    <AlertCircle className="h-3 w-3" />
-                    {errors.confirmPassword}
-                  </p>
+                  </div>
                 )}
               </div>
 
-              {/* Legal Agreements */}
-              <div className="space-y-4 pt-4 border-t border-gray-200">
-                <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-                  <div className="flex items-start gap-3">
-                    <Shield className="h-5 w-5 text-blue-600 mt-1" />
-                    <div className="text-sm text-blue-800">
-                      <h4 className="font-medium mb-2">
-                        {t("parentRegistration.legal.title")}
-                      </h4>
-                      <p className="leading-relaxed">
+              {/* Confirm Password (Registration only) */}
+              {!isLoginMode && (
+                <div className="space-y-2">
+                  <label
+                    htmlFor="confirmPassword"
+                    className="text-parent-sm font-medium text-gray-700"
+                  >
+                    {t("parentRegistration.labels.confirmPassword")} *
+                  </label>
+                  <div className="relative">
+                    <Input
+                      id="confirmPassword"
+                      type={showConfirmPassword ? "text" : "password"}
+                      value={formData.confirmPassword}
+                      onChange={(e) =>
+                        handleInputChange("confirmPassword", e.target.value)
+                      }
+                      placeholder={t(
+                        "parentRegistration.placeholders.confirmPassword"
+                      )}
+                      className={`text-parent-sm pr-10 ${
+                        errors.confirmPassword
+                          ? "border-red-500 focus:ring-red-500"
+                          : ""
+                      }`}
+                      disabled={isLoading}
+                    />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setShowConfirmPassword(!showConfirmPassword)
+                      }
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 transition-colors"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-4 w-4" />
+                      ) : (
+                        <Eye className="h-4 w-4" />
+                      )}
+                    </button>
+                  </div>
+                  {errors.confirmPassword && (
+                    <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
+                      <AlertCircle className="h-3 w-3" />
+                      {errors.confirmPassword}
+                    </p>
+                  )}
+
+                  {/* Password Match Indicator */}
+                  {formData.confirmPassword && (
+                    <div className="flex items-center gap-2 text-parent-xs">
+                      {formData.password === formData.confirmPassword ? (
+                        <>
+                          <CheckCircle className="h-3 w-3 text-green-600" />
+                          <span className="text-green-600">
+                            {t("parentRegistration.passwordMatch.success")}
+                          </span>
+                        </>
+                      ) : (
+                        <>
+                          <AlertCircle className="h-3 w-3 text-orange-600" />
+                          <span className="text-orange-600">
+                            {t("parentRegistration.passwordMatch.mismatch")}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Terms and Privacy (Registration only) */}
+              {!isLoginMode && (
+                <div className="space-y-3 pt-2">
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="termsAccepted"
+                        checked={formData.termsAccepted}
+                        onChange={(e) =>
+                          handleInputChange("termsAccepted", e.target.checked)
+                        }
+                        className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+                      />
+                      <label
+                        htmlFor="termsAccepted"
+                        className="text-sm text-gray-700"
+                      >
                         <Trans
-                          i18nKey="parentRegistration.legal.description"
+                          i18nKey="parentRegistration.labels.terms"
                           components={{
-                            strong: <strong />,
+                            a: (
+                              <a
+                                href="/legal/terms"
+                                className="text-primary hover:underline"
+                              />
+                            ),
                           }}
                         />
-                      </p>
+                      </label>
                     </div>
+                    {errors.termsAccepted && (
+                      <p className="text-parent-xs text-red-600 flex items-center gap-1 ml-7 animate-slide-in-left">
+                        <AlertCircle className="h-3 w-3" />
+                        {errors.termsAccepted}
+                      </p>
+                    )}
+
+                    <div className="flex items-start gap-3">
+                      <input
+                        type="checkbox"
+                        id="privacyAccepted"
+                        checked={formData.privacyAccepted}
+                        onChange={(e) =>
+                          handleInputChange("privacyAccepted", e.target.checked)
+                        }
+                        className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
+                      />
+                      <label
+                        htmlFor="privacyAccepted"
+                        className="text-sm text-gray-700"
+                      >
+                        <Trans
+                          i18nKey="parentRegistration.labels.privacy"
+                          components={{
+                            a: (
+                              <a
+                                href="/legal/privacy"
+                                className="text-primary hover:underline"
+                              />
+                            ),
+                          }}
+                        />{" "}
+                        <a
+                          href="/legal/privacy"
+                          className="text-primary hover:underline"
+                        >
+                          {t("parentRegistration.links.privacy")}
+                        </a>
+                      </label>
+                    </div>
+                    {errors.privacyAccepted && (
+                      <p className="text-parent-xs text-red-600 flex items-center gap-1 ml-7 animate-slide-in-left">
+                        <AlertCircle className="h-3 w-3" />
+                        {errors.privacyAccepted}
+                      </p>
+                    )}
                   </div>
                 </div>
-
-                <div className="space-y-3">
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="termsAccepted"
-                      checked={formData.termsAccepted}
-                      onChange={(e) =>
-                        handleInputChange("termsAccepted", e.target.checked)
-                      }
-                      className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                    />
-                    <label
-                      htmlFor="termsAccepted"
-                      className="text-sm text-gray-700"
-                    >
-                      <Trans
-                        i18nKey="parentRegistration.labels.terms"
-                        components={{
-                          a: (
-                            <a
-                              href="/legal/terms"
-                              className="text-primary hover:underline"
-                            />
-                          ),
-                        }}
-                      />{" "}
-                      <a
-                        href="/legal/terms"
-                        className="text-primary hover:underline"
-                      >
-                        {t("parentRegistration.links.terms")}
-                      </a>
-                    </label>
-                  </div>
-                  {errors.termsAccepted && (
-                    <p className="text-parent-xs text-red-600 flex items-center gap-1 ml-7 animate-slide-in-left">
-                      <AlertCircle className="h-3 w-3" />
-                      {errors.termsAccepted}
-                    </p>
-                  )}
-
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="privacyAccepted"
-                      checked={formData.privacyAccepted}
-                      onChange={(e) =>
-                        handleInputChange("privacyAccepted", e.target.checked)
-                      }
-                      className="mt-1 h-4 w-4 text-primary border-gray-300 rounded focus:ring-primary"
-                    />
-                    <label
-                      htmlFor="privacyAccepted"
-                      className="text-sm text-gray-700"
-                    >
-                      <Trans
-                        i18nKey="parentRegistration.labels.privacy"
-                        components={{
-                          a: (
-                            <a
-                              href="/legal/privacy"
-                              className="text-primary hover:underline"
-                            />
-                          ),
-                        }}
-                      />{" "}
-                      <a
-                        href="/legal/privacy"
-                        className="text-primary hover:underline"
-                      >
-                        {t("parentRegistration.links.privacy")}
-                      </a>
-                    </label>
-                  </div>
-                  {errors.privacyAccepted && (
-                    <p className="text-parent-xs text-red-600 flex items-center gap-1 ml-7 animate-slide-in-left">
-                      <AlertCircle className="h-3 w-3" />
-                      {errors.privacyAccepted}
-                    </p>
-                  )}
-                </div>
-              </div>
+              )}
 
               {/* Submit Button */}
               <Button
@@ -510,8 +625,12 @@ export function ParentRegistration({
                 {isLoading ? (
                   <div className="flex items-center gap-2">
                     <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    {t("parentRegistration.buttons.creatingAccount")}
+                    {isLoginMode
+                      ? t("parentRegistration.buttons.signingIn")
+                      : t("parentRegistration.buttons.creatingAccount")}
                   </div>
+                ) : isLoginMode ? (
+                  t("parentRegistration.buttons.signIn")
                 ) : (
                   t("parentRegistration.buttons.createAccount")
                 )}

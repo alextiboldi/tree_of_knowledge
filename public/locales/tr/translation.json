@@ -99,7 +99,8 @@
       },
       "email": {
         "required": "E-posta gerekli",
-        "invalid": "Lütfen geçerli bir e-posta adresi girin"
+        "invalid": "Lütfen geçerli bir e-posta adresi girin",
+        "exists": "Bu e-posta adresi ile zaten bir hesap mevcut"
       },
       "password": {
         "required": "Şifre gerekli",
@@ -110,8 +111,17 @@
         "required": "Lütfen şifrenizi onaylayın",
         "match": "Şifreler eşleşmiyor"
       },
-      "termsAccepted": "Hizmet Şartlarını kabul etmelisiniz",
-      "privacyAccepted": "Gizlilik Politikasını kabul etmelisiniz"
+      "terms": {
+        "required": "Hizmet Şartlarını kabul etmelisiniz"
+      },
+      "privacy": {
+        "required": "Gizlilik Politikasını kabul etmelisiniz"
+      },
+      "login": {
+        "invalid": "Geçersiz e-posta veya şifre. Lütfen tekrar deneyin."
+      },
+      "generic": "Kayıt başarısız. Lütfen tekrar deneyin.",
+      "network": "Ağ hatası. Bağlantınızı kontrol edin ve tekrar deneyin."
     },
     "passwordStrength": {
       "label": "Şifre gücü:",
@@ -129,9 +139,26 @@
       "terms": "Hizmet Şartları",
       "privacy": "Gizlilik Politikası"
     },
+    "welcome": {
+      "title": "Hesabınızı Oluşturun",
+      "subtitle": "Güvenli, yapay zeka destekli öğrenmeyi keşfeden binlerce aileye katılın",
+      "loginTitle": "Tekrar Hoş Geldiniz!",
+      "loginSubtitle": "Çocuğunuzun öğrenme yolculuğuna devam etmek için giriş yapın"
+    },
+    "passwordMatch": {
+      "success": "Şifreler eşleşiyor!",
+      "mismatch": "Şifreler eşleşmiyor"
+    },
     "buttons": {
+      "back": "Geri",
       "createAccount": "Güvenli Hesap Oluştur",
-      "creatingAccount": "Hesap Oluşturuluyor..."
+      "creatingAccount": "Hesap Oluşturuluyor...",
+      "signIn": "Giriş Yap",
+      "signingIn": "Giriş Yapılıyor..."
+    },
+    "success": {
+      "title": "Hesap Başarıyla Oluşturuldu!",
+      "message": "Bilgi Ağacına hoş geldiniz. Artık çocuğunuzun profilini oluşturmaya hazırsınız."
     },
     "securityNote": "Bilgileriniz <strong>şifrelenir ve güvenli bir şekilde saklanır</strong>. Verilerinizi asla üçüncü taraflarla paylaşmayız."
   },
@@ -168,7 +195,10 @@
         "min": "Yaş en az 5 olmalı",
         "max": "Yaş en fazla 15 olmalı"
       },
-      "parentalConsent": "Çocuk profili oluşturmak için ebeveyn izni gereklidir"
+      "parentalConsent": "Çocuk profili oluşturmak için ebeveyn izni gereklidir",
+      "authentication": "Çocuk profili oluşturmak için lütfen giriş yapın",
+      "generic": "Çocuk profili oluşturulamadı. Lütfen tekrar deneyin.",
+      "network": "Ağ hatası. Lütfen bağlantınızı kontrol edin ve tekrar deneyin."
     },
     "ageGroups": {
       "earlyElementary": "Erken İlkokul (5-7)",
