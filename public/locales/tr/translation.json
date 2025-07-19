@@ -1,0 +1,525 @@
+{
+  "greeting": "Bilgi Ağacına hoş geldiniz!",
+  "features": {
+    "askAnything": {
+      "title": "Her Şeyi Sor, Her Şeyi Öğren!",
+      "description": "Meraklı zihinler, gelişmiş yapay zeka destekli, çocuğunuzun anlama düzeyine mükemmel şekilde uyarlanmış, yaşa uygun yanıtlar alır."
+    },
+    "knowledgeBlossom": {
+      "title": "Bilginin Yeşerdiğini İzle!",
+      "description": "Çocuğunuzun öğrenme yolculuğunun, sorduğu her soruyla büyüyen sihirli ağaçla canlandığını görün."
+    },
+    "safeLearning": {
+      "title": "Güvenli ve Sağlam Öğrenme",
+      "description": "COPPA uyumlu güvenlik özellikleriyle tam ebeveyn kontrolü. Çocuğunuzun merakı korunur ve beslenir."
+    },
+    "title": "Ebeveynler Bizi Neden Seviyor?",
+    "subtitle": "Hem öğrenme hem de güvenlik göz önünde bulundurularak tasarlanmış, meraklı zihinlerin gelişmesi için mükemmel bir ortam yaratıyor."
+  },
+  "testimonials": {
+    "sarah": {
+      "text": "8 yaşındaki oğlum dinozorlardan uzaya kadar her şeyi soruyor! Bu uygulama ona gerçekten anlayabileceği harika cevaplar veriyor.",
+      "author": "Sarah M.",
+      "role": "2 Çocuk Annesi"
+    },
+    "david": {
+      "text": "Sonunda, kızımla birlikte büyüyen bir eğitim uygulaması. Güvenlik özellikleri içimi rahatlatıyor.",
+      "author": "David L.",
+      "role": "Baba"
+    },
+    "maria": {
+      "text": "Görsel ağaç harika! Çocuklarım dallarının en çok kimin büyüdüğünü görmek için yarışıyor. Öğrenmek eğlenceli hale geldi!",
+      "author": "Maria K.",
+      "role": "Evde Eğitim Veren Ebeveyn"
+    },
+    "title": "Ebeveynler Ne Diyor?"
+  },
+  "stats": {
+    "questionsAnswered": "Yanıtlanan Soru",
+    "parentSatisfaction": "Ebeveyn Memnuniyeti",
+    "ageRange": "Yaş Aralığı",
+    "learningAvailable": "Öğrenme Mevcut"
+  },
+  "hero": {
+    "title": {
+      "line1": "<1>Sihirli</1> Bilgi Ağacı",
+      "line2": ""
+    },
+    "subtitle": {
+      "line1": "Merakın bilgeliğe dönüştüğü yer.",
+      "line2": "5-15 yaş arası çocuklar için güvenli, ilgi çekici, yapay zeka destekli öğrenme",
+      "line3": "."
+    },
+    "buttons": {
+      "startLearning": "Öğrenme Yolculuğuna Başla",
+      "watchDemo": "Demoyu İzle"
+    },
+    "trustIndicators": {
+      "coppa": "COPPA Uyumlu",
+      "parentApproved": "Ebeveyn Onaylı",
+      "childSafe": "Çocuklar İçin Güvenli"
+    }
+  },
+  "cta": {
+    "title": "Bilgi Tohumlarını Eklemeye Hazır mısınız?",
+    "subtitle": "Güvenli, ilgi çekici, yapay zeka destekli öğrenmenin keyfini keşfeden binlerce aileye katılın.",
+    "buttons": {
+      "startFree": "Bugün Ücretsiz Başla"
+    },
+    "noCreditCard": "Kredi kartı gerekmez • COPPA uyumlu • Anında kurulum",
+    "trustIndicators": {
+      "safe": "Çocuklar için güvenli",
+      "parentControlled": "Ebeveyn kontrollü",
+      "educational": "Eğitici içerik"
+    }
+  },
+  "parentRegistration": {
+    "backButton": "Geri",
+    "title": "Ebeveyn Hesabı Oluştur",
+    "subtitle": "Çocuğunuzun öğrenme yolculuğunu yönetmek için güvenli hesabınızı kurun",
+    "formTitle": "Güvenli Hesap Oluşturma",
+    "labels": {
+      "parentName": "Adınız *",
+      "email": "E-posta Adresi *",
+      "password": "Şifre *",
+      "confirmPassword": "Şifreyi Onayla *",
+      "terms": "<a>Hizmet Şartlarını</a> kabul ediyorum *",
+      "privacy": "<a>Gizlilik Politikasını</a> kabul ediyorum *"
+    },
+    "placeholders": {
+      "parentName": "Tam adınızı girin",
+      "email": "E-posta adresinizi girin",
+      "password": "Güçlü bir şifre oluşturun",
+      "confirmPassword": "Şifrenizi onaylayın"
+    },
+    "errors": {
+      "parentName": {
+        "required": "Ebeveyn adı gerekli",
+        "minLength": "Ad en az 2 karakter olmalı"
+      },
+      "email": {
+        "required": "E-posta gerekli",
+        "invalid": "Lütfen geçerli bir e-posta adresi girin"
+      },
+      "password": {
+        "required": "Şifre gerekli",
+        "minLength": "Şifre en az 8 karakter olmalı",
+        "strength": "Şifre büyük harf, küçük harf ve sayı içermeli"
+      },
+      "confirmPassword": {
+        "required": "Lütfen şifrenizi onaylayın",
+        "match": "Şifreler eşleşmiyor"
+      },
+      "termsAccepted": "Hizmet Şartlarını kabul etmelisiniz",
+      "privacyAccepted": "Gizlilik Politikasını kabul etmelisiniz"
+    },
+    "passwordStrength": {
+      "label": "Şifre gücü:",
+      "weak": "Zayıf",
+      "fair": "Orta",
+      "good": "İyi",
+      "strong": "Güçlü"
+    },
+    "passwordsMatch": "Şifreler eşleşiyor",
+    "legal": {
+      "title": "Gizlilik ve Şartlar Bilgisi",
+      "description": "Hesap oluşturarak, çocuk eğitimine yönelik <strong>güvenlik odaklı yaklaşımımızı</strong> kabul etmiş olursunuz. Tüm etkileşimler yaşa uygun içerik için izlenir ve filtrelenir."
+    },
+    "links": {
+      "terms": "Hizmet Şartları",
+      "privacy": "Gizlilik Politikası"
+    },
+    "buttons": {
+      "createAccount": "Güvenli Hesap Oluştur",
+      "creatingAccount": "Hesap Oluşturuluyor..."
+    },
+    "securityNote": "Bilgileriniz <strong>şifrelenir ve güvenli bir şekilde saklanır</strong>. Verilerinizi asla üçüncü taraflarla paylaşmayız."
+  },
+  "childProfileCreation": {
+    "backButton": "Geri",
+    "title": "Çocuk Profili Oluştur",
+    "subtitle": "Çocuğunuz hakkında bize bilgi verin, böylece onlar için mükemmel bir öğrenme deneyimi oluşturabiliriz",
+    "formTitle": "Çocuğunuzun Bilgileri",
+    "labels": {
+      "displayName": "Çocuğun Görünen Adı *",
+      "age": "Çocuğun Yaşı *",
+      "parentalConsent": {
+        "strong": "Ben ebeveyn veya yasal vasiyim",
+        "text": "<strong>Ben ebeveyn veya yasal vasiyim</strong> {{name}}'in ve bu eğitim platformunu kullanmasına izin veriyorum. Etkinliklerini izleyebileceğimi ve bu izni istediğim zaman iptal edebileceğimi anlıyorum. *",
+        "thisChild": "bu çocuk"
+      }
+    },
+    "placeholders": {
+      "displayName": "Çocuğunuzun ilk adını veya takma adını girin",
+      "age": "Yaş"
+    },
+    "notes": {
+      "displayName": "Gizlilik için sadece ilk ad veya takma ad yeterlidir - asla tam ad gerekmez",
+      "age": "Yaş, çocuğunuzun gelişim düzeyine uygun içerik sağlamamıza yardımcı olur"
+    },
+    "errors": {
+      "displayName": {
+        "required": "Görünen ad gerekli",
+        "minLength": "Ad en az 2 karakter olmalı",
+        "maxLength": "Ad en fazla 20 karakter olmalı",
+        "invalid": "Ad sadece harf ve boşluk içerebilir"
+      },
+      "age": {
+        "min": "Yaş en az 5 olmalı",
+        "max": "Yaş en fazla 15 olmalı"
+      },
+      "parentalConsent": "Çocuk profili oluşturmak için ebeveyn izni gereklidir"
+    },
+    "ageGroups": {
+      "earlyElementary": "Erken İlkokul (5-7)",
+      "elementary": "İlkokul (8-10)",
+      "middleSchool": "Ortaokul (11-13)",
+      "earlyHighSchool": "Lise Başlangıcı (14-15)"
+    },
+    "agePreview": {
+      "title": "{{name}} için mükemmel!",
+      "yourChild": "Çocuğunuz",
+      "earlyElementary": {
+        "1": "Bol resimli basit açıklamalar",
+        "2": "Temel bilim kavramları ve doğa gerçekleri",
+        "3": "Sayma, şekiller ve eğlenceli matematik oyunları"
+      },
+      "elementary": {
+        "1": "Daha detaylı açıklamalar ve harika örnekler",
+        "2": "Nesnelerin nasıl çalıştığı ve neden olduğu",
+        "3": "Problem çözme ve mantıksal düşünme"
+      },
+      "middleSchool": {
+        "1": "Bilimsel süreçler ve daha derinlemesine anlama",
+        "2": "Karmaşık ekosistemler ve teknoloji kavramları",
+        "3": "İleri matematik kavramları ve gerçek dünya uygulamaları"
+      },
+      "earlyHighSchool": {
+        "1": "İleri bilimsel kavramlar ve teoriler",
+        "2": "Eleştirel düşünme ve analiz becerileri",
+        "3": "Karmaşık matematiksel akıl yürütme ve uygulamalar"
+      }
+    },
+    "parentalConsent": {
+      "title": "Ebeveyn İzni Gerekli",
+      "description": "Aşağıdaki kutuyu işaretleyerek, bu çocuğun ebeveyni veya yasal vasisi olduğunuzu ve Sihirli Bilgi Ağacı platformunu sizin gözetiminiz altında kullanmasına izin verdiğinizi onaylarsınız."
+    },
+    "buttons": {
+      "createProfile": "{{name}}'in Profilini Oluştur",
+      "creatingProfile": "Profil Oluşturuluyor...",
+      "child": "Çocuk"
+    },
+    "privacyNotice": {
+      "title": "Gizlilik ve Güvenlik",
+      "description": "Çocuğunuzun bilgileri <strong>şifrelenir ve asla paylaşılmaz</strong>. Çocukların gizliliğini korumak ve güvenli bir öğrenme ortamı sağlamak için katı COPPA yönergelerine uyarız."
+    }
+  },
+  "domainSelection": {
+    "backButton": "Geri",
+    "title": "Öğrenme Dünyalarını Seçin",
+    "subtitle": "{{name}}'in keşfedeceği öğrenme alanlarını seçin. Bunları istediğiniz zaman ebeveyn panonuzdan değiştirebilirsiniz.",
+    "domains": {
+      "science": {
+        "name": "Bilim ve Teknoloji",
+        "description": "Roketlerden robotlara kadar her şeyin nasıl çalıştığını keşfedin!",
+        "examples": {
+          "1": "Roketler nasıl uçar?",
+          "2": "Gökyüzü neden mavidir?",
+          "3": "Bilgisayarlar nasıl çalışır?"
+        },
+        "ageAppropriate": "Nesnelerin nasıl çalıştığını anlamayı seven meraklı zihinler için mükemmel"
+      },
+      "nature": {
+        "name": "Doğa ve Çevre",
+        "description": "Harika hayvanları, bitkileri ve güzel gezegenimizi keşfedin!",
+        "examples": {
+          "1": "Kelebekler nasıl dönüşür?",
+          "2": "Ağaçlar neden yaprak döker?",
+          "3": "Penguenler nerede yaşar?"
+        },
+        "ageAppropriate": "Yaşayan dünyayı keşfetmek isteyen doğa severler için harika"
+      },
+      "math": {
+        "name": "Matematik ve Mantık",
+        "description": "Sayıları desenler, bulmacalar ve problem çözme ile eğlenceli hale getirin!",
+        "examples": {
+          "1": "Desenler neden tekrarlanır?",
+          "2": "Büyük sayıları nasıl sayarız?",
+          "3": "Etrafımızdaki şekiller nelerdir?"
+        },
+        "ageAppropriate": "Bulmaca çözmeyi ve desenleri anlamayı seven mantıksal düşünürler için ideal"
+      }
+    },
+    "exampleQuestions": "Örnek sorular:",
+    "selected": "Seçildi ✓",
+    "select": "Seçmek için tıklayın",
+    "summary": {
+      "title": "{{name}}'in Öğrenme Yolculuğu",
+      "description": "{{name}} <strong>{{count}}</strong> harika öğrenme dünyasın{{count, plural, one {ı} other {ı}}} keşfedecek:",
+      "remember": {
+        "title": "Unutma:",
+        "description": "<strong>Unutma:</strong> Öğrenme dünyalarını istediğin zaman ebeveyn kontrol panelinden ekleyebilir veya kaldırabilirsin. {{name}}'e tam sihirli deneyimi yaşatmak için üçüyle birden başlamanı öneririz!"
+      },
+      "noSelection": "Lütfen {{name}}'in keşfedeceği en az bir öğrenme dünyası seçin."
+    },
+    "buttons": {
+      "settingUp": "{{name}}'in dünyaları kuruluyor...",
+      "startAdventure": "{{name}}'in Macerasını Başlat"
+    },
+    "info": {
+      "title": "Neden Öğrenme Alanlarını Soruyoruz?",
+      "description": "Belirli alanları seçerek, {{name}}'in yalnızca onayladığınız alanlarda soru ve cevaplar almasını sağlarız. Bu, çocuğunuzun öğrenme deneyimi üzerinde tam kontrol sahibi olmanızı sağlarken, onları yaşa uygun içerikle güvende ve ilgili tutar."
+    }
+  },
+  "parentDashboard": {
+    "title": "Ebeveyn Panosu",
+    "subtitle": "Çocuğunuzun öğrenme deneyimini yönetin",
+    "logoutButton": "Çıkış Yap",
+    "profile": {
+      "title": "{{name}}'in Profili",
+      "editButton": "Düzenle",
+      "labels": {
+        "displayName": "Görünen Ad",
+        "age": "Yaş",
+        "profileCreated": "Profil Oluşturuldu",
+        "lastActivity": "Son Etkinlik"
+      },
+      "ageValue": "{{age}} yaşında"
+    },
+    "domains": {
+      "title": "Öğrenme Alanları",
+      "modifyButton": "Değiştir",
+      "active": "Aktif",
+      "disabled": "Devre Dışı",
+      "description": "{{name}} <strong>{{count}}</strong> öğrenme alanına erişebilir. Öğrenme deneyimlerini özelleştirmek için bu seçimleri istediğiniz zaman değiştirebilirsiniz.",
+      "science": {
+        "name": "Bilim ve Teknoloji"
+      },
+      "nature": {
+        "name": "Doğa ve Çevre"
+      },
+      "math": {
+        "name": "Matematik ve Mantık"
+      }
+    },
+    "quickActions": {
+      "title": "Hızlı Eylemler",
+      "startLearning": "Öğrenme Oturumunu Başlat",
+      "editProfile": "Çocuk Profilini Düzenle",
+      "manageDomains": "Alanları Yönet"
+    },
+    "safety": {
+      "title": "Güvenlik ve Destek",
+      "safeLearning": {
+        "title": "Güvenli Öğrenme Ortamı",
+        "description": "Tüm yapay zeka yanıtları yaşa uygun içerik için filtrelenir"
+      },
+      "reportButton": "Sorun Bildir",
+      "support": {
+        "text": "Acil durumlar için doğrudan bize e-posta gönderin:",
+        "email": "support@magicalknowledgetree.com"
+      }
+    },
+    "report": {
+      "title": "Sorun Bildir",
+      "description": "Lütfen karşılaştığınız sorunu açıklayın. Tüm raporları ciddiye alıyoruz ve 24 saat içinde inceleyeceğiz.",
+      "placeholder": "Sorunu açıklayın...",
+      "cancelButton": "İptal",
+      "submitButton": "Raporu Gönder",
+      "success": "Raporunuz için teşekkür ederiz. 24 saat içinde inceleyeceğiz."
+    }
+  },
+  "mainApp": {
+    "title": "<gradient>Sihirli Bilgi Ağacı</gradient>",
+    "greeting": "Merhaba <strong>{{name}}</strong>!",
+    "subtitle": "<strong>Bilim</strong>, <strong>doğa</strong> veya <strong>matematik</strong> hakkında istediğin şeyi sor! Sana eğlenceli açıklamalar ve güzel resimlerle öğrenmene yardımcı olacağım.",
+    "questionPlaceholder": "Bugün ne öğrenmek istersin?",
+    "domains": {
+      "science": {
+        "title": "Bilim ve Teknoloji",
+        "description": "Roketlerden robotlara kadar her şeyin nasıl çalıştığını öğren!"
+      },
+      "nature": {
+        "title": "Doğa ve Çevre",
+        "description": "Harika hayvanları, bitkileri ve güzel gezegenimizi keşfet!"
+      },
+      "math": {
+        "title": "Matematik ve Mantık",
+        "description": "Sayıları desenler, bulmacalar ve problem çözme ile eğlenceli hale getir!"
+      }
+    },
+    "funFacts": {
+      "title": "Biliyor muydun?",
+      "rocket": "<emoji>🚀</emoji> Bir roketin Dünya'nın çekim alanından kurtulması için saatte 40.000 kilometre hıza ulaşması gerekir!",
+      "trees": "<emoji>🌳</emoji> Ağaçlar binlerce yıl yaşayabilir ve birbirleriyle iletişim kurabilirler!",
+      "zero": "<emoji>🧮</emoji> Sıfır rakamı Hindistan'da 1.500 yıl önce icat edildi!"
+    },
+    "errors": {
+      "failedToGetAnswer": "Cevap alınamadı",
+      "fallbackExplanation": "Şu anda bu soruyla ilgili <strong>sorun yaşıyorum</strong>. Farklı bir şekilde sormayı deneyebilir misin?",
+      "fallbackDrawingSuggestion": "Düşünen dost canlısı bir ağaç karakteri",
+      "connectionError": "Üzgünüm, şu anda bağlanmakta sorun yaşıyorum. Lütfen tekrar deneyin!",
+      "title": "Hata! Bir şeyler ters gitti",
+      "tryAgainButton": "Tekrar Dene"
+    },
+    "footer": {
+      "madeWithLove": "Meraklı genç zihinler için sevgiyle yapıldı",
+      "safeLearning": "5-15 yaş arası çocuklar için güvenli, eğitici ve eğlenceli öğrenme"
+    }
+  },
+  "questionInput": {
+    "title": "Bilgi Ağacına Sor",
+    "defaultQuestion": "Gökyüzü neden mavi?",
+    "feedback": {
+      "great": "✨ Harika soru!",
+      "ready": "💭 Sana harika bir şey öğretmeye hazırım!",
+      "keepGoing": "🌱 Devam et, bana daha fazla anlat!",
+      "perfect": "🚀 Mükemmel! Sana öğretmek için sabırsızlanıyorum!"
+    },
+    "buttons": {
+      "thinking": "Düşünüyorum...",
+      "ask": "Haydi Sor!"
+    },
+    "suggestions": {
+      "skyBlue": "Gökyüzü neden mavi?",
+      "butterflies": "Kelebekler nasıl uçar?",
+      "blackHoles": "Kara delikler nedir?",
+      "plants": "Bitkiler nasıl büyür?"
+    }
+  },
+  "enhancedAnswer": {
+    "title": "Öğrenme Keşfi",
+    "ageAppropriate": "{{age}} yaş için uygun açıklama",
+    "loading": "İllüstrasyon yükleniyor...",
+    "illustration": {
+      "alt": "Eğitici illüstrasyon"
+    },
+    "guide": {
+      "alt": "{{domain}} rehberi",
+      "title": "{{domain}} Rehberi",
+      "subtitle": "Öğrenmene yardımcı olmak için buradayım!"
+    },
+    "explanation": {
+      "title": "Cevabın"
+    },
+    "debug": {
+      "title": "Çizim Önerisi (Sadece geliştirme)"
+    },
+    "buttons": {
+      "gotIt": "Anladım! 🌟"
+    }
+  },
+  "featureShowcase": {
+    "features": {
+      "tree": {
+        "title": "Büyüyen Bilgi Ağacı",
+        "description": "Çocuğunuzun öğrenme yolculuğunun, keşfettiği her soruyla dalların büyümesiyle canlandığını izleyin.",
+        "highlight": "Görsel Öğrenme İlerlemesi",
+        "demo": "İnteraktif ağaç her cevapla büyüyor"
+      },
+      "ai": {
+        "title": "Yapay Zeka Destekli Cevaplar",
+        "description": "Gelişmiş yapay zeka, çocuğunuzun anlama düzeyine mükemmel şekilde uyarlanmış, yaşa uygun açıklamalar sunar.",
+        "highlight": "Yaşa Uygun İçerik",
+        "demo": "Cevaplar 5-15 yaş arasına uyarlanır"
+      },
+      "safety": {
+        "title": "Tam Güvenlik",
+        "description": "Çok katmanlı güvenlik sistemleri, çocuğunuza sadece eğitici ve uygun içeriğin ulaşmasını sağlar.",
+        "highlight": "COPPA Uyumlu",
+        "demo": "%100 ebeveyn kontrollü deneyim"
+      }
+    },
+    "demo": "Demo",
+    "trust": {
+      "title": "Ebeveynler Neden Bize Güveniyor",
+      "subtitle": "Güvenlik, eğitim ve çocuk gelişimi düşünülerek tasarlandı",
+      "educational": "Sadece eğitici içerik",
+      "guardrails": "Gelişmiş yapay zeka korumaları",
+      "dashboard": "Ebeveyn paneli kontrolü",
+      "childFriendly": "Çocuk dostu arayüz",
+      "educator": "Eğitimci onaylı",
+      "engaging": "İlgi çekici animasyonlar"
+    },
+    "comparison": {
+      "title": "Sadece Soru-Cevaptan Daha Fazlası",
+      "subtitle": "Gelişen zihinler için tasarlanmış eksiksiz bir öğrenme ekosistemi"
+    },
+    "difference": {
+      "title": "Bizi Farklı Kılan Nedir",
+      "ageAppropriate": "Yaşa uygun yapay zeka cevapları (5-15 yaş)",
+      "visual": "Eğitici illüstrasyonlarla görsel öğrenme",
+      "progressive": "İlerleyici bilgi ağacı görselleştirmesi",
+      "parental": "Tam ebeveyn kontrolü ve gözetimi",
+      "coppa": "COPPA uyumlu güvenlik önlemleri",
+      "content": "Güvenilir kaynaklardan eğitici içerik"
+    },
+    "domains": {
+      "title": "Öğrenme Alanları",
+      "science": {
+        "name": "Bilim ve Teknoloji",
+        "desc": "Uzay, icatlar, nesnelerin nasıl çalıştığı"
+      },
+      "nature": {
+        "name": "Doğa ve Çevre",
+        "desc": "Hayvanlar, bitkiler, ekosistemler"
+      },
+      "math": {
+        "name": "Matematik ve Mantık",
+        "desc": "Sayılar, desenler, problem çözme"
+      }
+    }
+  },
+  "ageTesting": {
+    "title": "Yaşa Uygun Yapay Zeka Testi",
+    "subtitle": "Yapay zekamızın farklı yaş grupları için açıklamaları nasıl uyarladığını görün",
+    "defaultQuestion": "Gökyüzü neden mavi?",
+    "testQuestion": "Test Sorusu",
+    "questionPlaceholder": "Test etmek için bir soru girin...",
+    "testButton": "Tüm Yaşları Test Et",
+    "sampleQuestionsTitle": "Örnek Sorular",
+    "sampleQuestions": {
+      "skyBlue": "Gökyüzü neden mavi?",
+      "rockets": "Roketler nasıl çalışır?",
+      "plants": "Bitkiler nasıl büyür?",
+      "sleep": "Neden uyumaya ihtiyacımız var?",
+      "computer": "Bir bilgisayar nasıl düşünür?"
+    },
+    "responsesTitle": "Yaşa Uygun Cevaplar: \"{{question}}\"",
+    "ageLabel": "Yaş {{age}} - {{group}}",
+    "complexityLevel": "Karmaşıklık Seviyesi: {{level}}/5",
+    "explanation": "Açıklama",
+    "drawingSuggestion": "Çizim Önerisi",
+    "ageGroups": {
+      "earlyElementary": "Erken İlkokul (5-6)",
+      "elementary": "İlkokul (7-8)",
+      "lateElementary": "İleri İlkokul (9-10)",
+      "middleSchool": "Ortaokul (11-12)",
+      "earlyHighSchool": "Lise Başlangıcı (13-15)"
+    },
+    "vocabulary": {
+      "simple": "Çok basit kelimeler",
+      "elementary": "İlkokul seviyesi",
+      "advanced": "İleri terminoloji"
+    },
+    "complexity": {
+      "concrete": "Somut örnekler",
+      "basic": "Temel kavramlar",
+      "advanced": "İleri prensipler"
+    },
+    "analysis": {
+      "title": "Yaşa Uygun Özellikler",
+      "vocabulary": "Kelime Dağarcığı",
+      "length": "Açıklama Uzunluğu",
+      "words": "{{count}} kelime",
+      "sentences": "Cümleler",
+      "sentenceCount": "{{count}} cümle",
+      "complexity": "Karmaşıklık"
+    },
+    "instructions": {
+      "title": "Yaşa Uygun Cevapları Test Et",
+      "description": "Yukarıya bir soru girin ve \"Tüm Yaşları Test Et\"e tıklayarak yapay zekamızın farklı yaşlardaki çocuklar için (6, 8, 10, 12, 14) açıklamaları nasıl uyarladığını görün.",
+      "note": "Bu, gelişmiş yaşa dayalı yönlendirme mühendisliğimizi gösterir ve her çocuğun gelişim düzeyine mükemmel şekilde uyarlanmış içerik almasını sağlar."
+    }
+  }
+}

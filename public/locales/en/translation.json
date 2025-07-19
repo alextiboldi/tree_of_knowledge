@@ -1,0 +1,525 @@
+{
+  "greeting": "Hello, welcome to the Tree of Knowledge!",
+  "features": {
+    "askAnything": {
+      "title": "Ask Anything, Learn Everything!",
+      "description": "Curious minds get age-appropriate answers powered by advanced AI, tailored perfectly for your child's understanding level."
+    },
+    "knowledgeBlossom": {
+      "title": "Watch Knowledge Blossom!",
+      "description": "See your child's learning journey come alive as the magical tree grows with every question they explore."
+    },
+    "safeLearning": {
+      "title": "Safe & Sound Learning",
+      "description": "Complete parental control with COPPA-compliant safety features. Your child's curiosity is protected and nurtured."
+    },
+    "title": "Why Parents Love Us",
+    "subtitle": "Designed with both learning and safety in mind, creating the perfect environment for curious minds to flourish."
+  },
+  "testimonials": {
+    "sarah": {
+      "text": "My 8-year-old asks about everything from dinosaurs to space! This app gives him amazing answers he can actually understand.",
+      "author": "Sarah M.",
+      "role": "Mom of 2"
+    },
+    "david": {
+      "text": "Finally, an educational app that grows with my daughter. The safety features give me peace of mind.",
+      "author": "David L.",
+      "role": "Father"
+    },
+    "maria": {
+      "text": "The visual tree is brilliant! My kids compete to see whose branches grow the most. Learning made fun!",
+      "author": "Maria K.",
+      "role": "Homeschool Parent"
+    },
+    "title": "What Parents Are Saying"
+  },
+  "stats": {
+    "questionsAnswered": "Questions Answered",
+    "parentSatisfaction": "Parent Satisfaction",
+    "ageRange": "Age Range",
+    "learningAvailable": "Learning Available"
+  },
+  "hero": {
+    "title": {
+      "line1": "The <1>Magical</1> Knowledge Tree",
+      "line2": ""
+    },
+    "subtitle": {
+      "line1": "Where curiosity grows into wisdom.",
+      "line2": "Safe, engaging, AI-powered learning",
+      "line3": "for children aged 5-15."
+    },
+    "buttons": {
+      "startLearning": "Start Their Learning Journey",
+      "watchDemo": "Watch Demo"
+    },
+    "trustIndicators": {
+      "coppa": "COPPA Compliant",
+      "parentApproved": "Parent Approved",
+      "childSafe": "Child Safe"
+    }
+  },
+  "cta": {
+    "title": "Ready to Plant the Seeds of Knowledge?",
+    "subtitle": "Join thousands of families who've discovered the joy of safe, engaging, AI-powered learning.",
+    "buttons": {
+      "startFree": "Start Free Today"
+    },
+    "noCreditCard": "No credit card required • COPPA compliant • Instant setup",
+    "trustIndicators": {
+      "safe": "Safe for children",
+      "parentControlled": "Parent controlled",
+      "educational": "Educational content"
+    }
+  },
+  "parentRegistration": {
+    "backButton": "Back",
+    "title": "Create Parent Account",
+    "subtitle": "Set up your secure account to manage your child's learning journey",
+    "formTitle": "Secure Account Creation",
+    "labels": {
+      "parentName": "Your Name *",
+      "email": "Email Address *",
+      "password": "Password *",
+      "confirmPassword": "Confirm Password *",
+      "terms": "I agree to the <a>Terms of Service</a> *",
+      "privacy": "I agree to the <a>Privacy Policy</a> *"
+    },
+    "placeholders": {
+      "parentName": "Enter your full name",
+      "email": "Enter your email address",
+      "password": "Create a strong password",
+      "confirmPassword": "Confirm your password"
+    },
+    "errors": {
+      "parentName": {
+        "required": "Parent name is required",
+        "minLength": "Name must be at least 2 characters"
+      },
+      "email": {
+        "required": "Email is required",
+        "invalid": "Please enter a valid email address"
+      },
+      "password": {
+        "required": "Password is required",
+        "minLength": "Password must be at least 8 characters",
+        "strength": "Password must contain uppercase, lowercase, and number"
+      },
+      "confirmPassword": {
+        "required": "Please confirm your password",
+        "match": "Passwords do not match"
+      },
+      "termsAccepted": "You must accept the Terms of Service",
+      "privacyAccepted": "You must accept the Privacy Policy"
+    },
+    "passwordStrength": {
+      "label": "Password strength:",
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong"
+    },
+    "passwordsMatch": "Passwords match",
+    "legal": {
+      "title": "Privacy & Terms Information",
+      "description": "By creating an account, you agree to our <strong>safety-first approach</strong> to child education. All interactions are monitored and filtered for age-appropriate content."
+    },
+    "links": {
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy"
+    },
+    "buttons": {
+      "createAccount": "Create Secure Account",
+      "creatingAccount": "Creating Account..."
+    },
+    "securityNote": "Your information is <strong>encrypted and stored securely</strong>. We never share your data with third parties."
+  },
+  "childProfileCreation": {
+    "backButton": "Back",
+    "title": "Create Child Profile",
+    "subtitle": "Tell us about your child so we can create the perfect learning experience for them",
+    "formTitle": "Your Child's Information",
+    "labels": {
+      "displayName": "Child's Display Name *",
+      "age": "Child's Age *",
+      "parentalConsent": {
+        "strong": "I am the parent or legal guardian",
+        "text": "<strong>I am the parent or legal guardian</strong> of {{name}} and I give my consent for them to use this educational platform. I understand that I can monitor their activity and revoke this consent at any time. *",
+        "thisChild": "this child"
+      }
+    },
+    "placeholders": {
+      "displayName": "Enter your child's first name or nickname",
+      "age": "Age"
+    },
+    "notes": {
+      "displayName": "We only need a first name or nickname - never a full name for privacy",
+      "age": "Age helps us provide content that's just right for your child's development level"
+    },
+    "errors": {
+      "displayName": {
+        "required": "Display name is required",
+        "minLength": "Name must be at least 2 characters",
+        "maxLength": "Name must be 20 characters or less",
+        "invalid": "Name can only contain letters and spaces"
+      },
+      "age": {
+        "min": "Age must be at least 5 years old",
+        "max": "Age must be 15 years old or younger"
+      },
+      "parentalConsent": "Parental consent is required to create a child profile"
+    },
+    "ageGroups": {
+      "earlyElementary": "Early Elementary (5-7)",
+      "elementary": "Elementary (8-10)",
+      "middleSchool": "Middle School (11-13)",
+      "earlyHighSchool": "Early High School (14-15)"
+    },
+    "agePreview": {
+      "title": "Perfect for {{name}}!",
+      "yourChild": "Your Child",
+      "earlyElementary": {
+        "1": "Simple explanations with lots of pictures",
+        "2": "Basic science concepts and nature facts",
+        "3": "Counting, shapes, and fun math games"
+      },
+      "elementary": {
+        "1": "More detailed explanations with cool examples",
+        "2": "How things work and why they happen",
+        "3": "Problem-solving and logical thinking"
+      },
+      "middleSchool": {
+        "1": "Scientific processes and deeper understanding",
+        "2": "Complex ecosystems and technology concepts",
+        "3": "Advanced math concepts and real-world applications"
+      },
+      "earlyHighSchool": {
+        "1": "Advanced scientific concepts and theories",
+        "2": "Critical thinking and analysis skills",
+        "3": "Complex mathematical reasoning and applications"
+      }
+    },
+    "parentalConsent": {
+      "title": "Parental Consent Required",
+      "description": "By checking the box below, you confirm that you are the parent or legal guardian of this child and give consent for them to use The Magical Knowledge Tree platform under your supervision."
+    },
+    "buttons": {
+      "createProfile": "Create {{name}}'s Profile",
+      "creatingProfile": "Creating Profile...",
+      "child": "Child"
+    },
+    "privacyNotice": {
+      "title": "Privacy & Safety",
+      "description": "Your child's information is <strong>encrypted and never shared</strong>. We follow strict COPPA guidelines to protect children's privacy and ensure a safe learning environment."
+    }
+  },
+  "domainSelection": {
+    "backButton": "Back",
+    "title": "Choose Learning Worlds",
+    "subtitle": "Select the learning domains that {{name}} will explore. You can change these anytime from your parent dashboard.",
+    "domains": {
+      "science": {
+        "name": "Science & Technology",
+        "description": "Explore the wonders of how things work, from rockets to robots!",
+        "examples": {
+          "1": "How do rockets fly?",
+          "2": "Why is the sky blue?",
+          "3": "How do computers work?"
+        },
+        "ageAppropriate": "Perfect for curious minds who love to understand how things work"
+      },
+      "nature": {
+        "name": "Nature & Environment",
+        "description": "Discover amazing animals, plants, and our beautiful planet!",
+        "examples": {
+          "1": "How do butterflies transform?",
+          "2": "Why do trees lose leaves?",
+          "3": "Where do penguins live?"
+        },
+        "ageAppropriate": "Great for nature lovers who want to explore the living world"
+      },
+      "math": {
+        "name": "Math & Logic",
+        "description": "Make numbers fun with patterns, puzzles, and problem-solving!",
+        "examples": {
+          "1": "Why do patterns repeat?",
+          "2": "How do we count big numbers?",
+          "3": "What shapes are around us?"
+        },
+        "ageAppropriate": "Ideal for logical thinkers who enjoy solving puzzles and understanding patterns"
+      }
+    },
+    "exampleQuestions": "Example questions:",
+    "selected": "Selected ✓",
+    "select": "Click to select",
+    "summary": {
+      "title": "{{name}}'s Learning Journey",
+      "description": "{{name}} will explore <strong>{{count}}</strong> amazing learning world{{count, plural, one {} other {s}}}:",
+      "remember": {
+        "title": "Remember:",
+        "description": "<strong>Remember:</strong> You can add or remove learning worlds anytime from your parent dashboard. We recommend starting with all three to give {{name}} the full magical experience!"
+      },
+      "noSelection": "Please select at least one learning world for {{name}} to explore."
+    },
+    "buttons": {
+      "settingUp": "Setting up {{name}}'s worlds...",
+      "startAdventure": "Start {{name}}'s Adventure"
+    },
+    "info": {
+      "title": "Why We Ask About Learning Domains",
+      "description": "By selecting specific domains, we ensure {{name}} only receives questions and answers in areas you approve. This gives you complete control over your child's learning experience while keeping them safe and engaged with age-appropriate content."
+    }
+  },
+  "parentDashboard": {
+    "title": "Parent Dashboard",
+    "subtitle": "Manage your child's learning experience",
+    "logoutButton": "Logout",
+    "profile": {
+      "title": "{{name}}'s Profile",
+      "editButton": "Edit",
+      "labels": {
+        "displayName": "Display Name",
+        "age": "Age",
+        "profileCreated": "Profile Created",
+        "lastActivity": "Last Activity"
+      },
+      "ageValue": "{{age}} years old"
+    },
+    "domains": {
+      "title": "Learning Domains",
+      "modifyButton": "Modify",
+      "active": "Active",
+      "disabled": "Disabled",
+      "description": "{{name}} has access to <strong>{{count}}</strong> learning domains. You can modify these selections anytime to customize their learning experience.",
+      "science": {
+        "name": "Science & Technology"
+      },
+      "nature": {
+        "name": "Nature & Environment"
+      },
+      "math": {
+        "name": "Math & Logic"
+      }
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "startLearning": "Start Learning Session",
+      "editProfile": "Edit Child Profile",
+      "manageDomains": "Manage Domains"
+    },
+    "safety": {
+      "title": "Safety & Support",
+      "safeLearning": {
+        "title": "Safe Learning Environment",
+        "description": "All AI responses are filtered for age-appropriate content"
+      },
+      "reportButton": "Report Issue",
+      "support": {
+        "text": "For urgent concerns, email us directly at",
+        "email": "support@magicalknowledgetree.com"
+      }
+    },
+    "report": {
+      "title": "Report an Issue",
+      "description": "Please describe the issue you encountered. We take all reports seriously and will review them within 24 hours.",
+      "placeholder": "Describe the issue...",
+      "cancelButton": "Cancel",
+      "submitButton": "Submit Report",
+      "success": "Thank you for your report. We will review it within 24 hours."
+    }
+  },
+  "mainApp": {
+    "title": "The <gradient>Magical Knowledge Tree</gradient>",
+    "greeting": "Hi <strong>{{name}}</strong>!",
+    "subtitle": "Ask me anything about <strong>science</strong>, <strong>nature</strong>, or <strong>math</strong>! I'll help you learn with fun explanations and beautiful pictures.",
+    "questionPlaceholder": "What would you like to learn about today?",
+    "domains": {
+      "science": {
+        "title": "Science & Technology",
+        "description": "Learn about how things work, from rockets to robots!"
+      },
+      "nature": {
+        "title": "Nature & Environment",
+        "description": "Discover amazing animals, plants, and our beautiful planet!"
+      },
+      "math": {
+        "title": "Math & Logic",
+        "description": "Make numbers fun with patterns, puzzles, and problem-solving!"
+      }
+    },
+    "funFacts": {
+      "title": "Did You Know?",
+      "rocket": "<emoji>🚀</emoji> A rocket needs to go 25,000 mph to escape Earth's gravity!",
+      "trees": "<emoji>🌳</emoji> Trees can live for thousands of years and talk to each other!",
+      "zero": "<emoji>🧮</emoji> The number zero was invented in India over 1,500 years ago!"
+    },
+    "errors": {
+      "failedToGetAnswer": "Failed to get answer",
+      "fallbackExplanation": "I'm having <strong>trouble</strong> with that question right now. Can you try asking it in a different way?",
+      "fallbackDrawingSuggestion": "A friendly tree character thinking",
+      "connectionError": "Sorry, I'm having trouble connecting right now. Please try again!",
+      "title": "Oops! Something went wrong",
+      "tryAgainButton": "Try Again"
+    },
+    "footer": {
+      "madeWithLove": "Made with love for curious young minds",
+      "safeLearning": "Safe, educational, and fun learning for children ages 5-15"
+    }
+  },
+  "questionInput": {
+    "title": "Ask the Knowledge Tree",
+    "defaultQuestion": "Why is the sky blue?",
+    "feedback": {
+      "great": "✨ Great question!",
+      "ready": "💭 I'm ready to help you learn something amazing!",
+      "keepGoing": "🌱 Keep going, tell me more!",
+      "perfect": "🚀 Perfect! I can't wait to help you learn!"
+    },
+    "buttons": {
+      "thinking": "Thinking...",
+      "ask": "Ask Away!"
+    },
+    "suggestions": {
+      "skyBlue": "Why is the sky blue?",
+      "butterflies": "How do butterflies fly?",
+      "blackHoles": "What are black holes?",
+      "plants": "How do plants grow?"
+    }
+  },
+  "enhancedAnswer": {
+    "title": "Learning Discovery",
+    "ageAppropriate": "Age-appropriate explanation for {{age}} year olds",
+    "loading": "Loading illustration...",
+    "illustration": {
+      "alt": "Educational illustration"
+    },
+    "guide": {
+      "alt": "{{domain}} guide",
+      "title": "{{domain}} Guide",
+      "subtitle": "Here to help you learn!"
+    },
+    "explanation": {
+      "title": "Your Answer"
+    },
+    "debug": {
+      "title": "Drawing Suggestion (Dev Only)"
+    },
+    "buttons": {
+      "gotIt": "Got it! 🌟"
+    }
+  },
+  "featureShowcase": {
+    "features": {
+      "tree": {
+        "title": "Growing Knowledge Tree",
+        "description": "Watch your child's learning journey come alive as branches grow with each question explored.",
+        "highlight": "Visual Learning Progress",
+        "demo": "Interactive tree grows with each answer"
+      },
+      "ai": {
+        "title": "AI-Powered Answers",
+        "description": "Advanced AI provides age-appropriate explanations tailored to your child's understanding level.",
+        "highlight": "Age-Appropriate Content",
+        "demo": "Answers adapt from age 5 to 15"
+      },
+      "safety": {
+        "title": "Complete Safety",
+        "description": "Multi-layer safety systems ensure only educational, appropriate content reaches your child.",
+        "highlight": "COPPA Compliant",
+        "demo": "100% parent-controlled experience"
+      }
+    },
+    "demo": "Demo",
+    "trust": {
+      "title": "Why Parents Trust Us",
+      "subtitle": "Built with safety, education, and child development in mind",
+      "educational": "Educational content only",
+      "guardrails": "Advanced AI guardrails",
+      "dashboard": "Parent dashboard control",
+      "childFriendly": "Child-friendly interface",
+      "educator": "Educator approved",
+      "engaging": "Engaging animations"
+    },
+    "comparison": {
+      "title": "More Than Just Q&A",
+      "subtitle": "A complete learning ecosystem designed for growing minds"
+    },
+    "difference": {
+      "title": "What Makes Us Different",
+      "ageAppropriate": "Age-appropriate AI responses (5-15 years)",
+      "visual": "Visual learning with educational illustrations",
+      "progressive": "Progressive knowledge tree visualization",
+      "parental": "Complete parental control and oversight",
+      "coppa": "COPPA-compliant child safety measures",
+      "content": "Educational content from trusted sources"
+    },
+    "domains": {
+      "title": "Learning Domains",
+      "science": {
+        "name": "Science & Technology",
+        "desc": "Space, inventions, how things work"
+      },
+      "nature": {
+        "name": "Nature & Environment",
+        "desc": "Animals, plants, ecosystems"
+      },
+      "math": {
+        "name": "Math & Logic",
+        "desc": "Numbers, patterns, problem solving"
+      }
+    }
+  },
+  "ageTesting": {
+    "title": "Age-Appropriate AI Testing",
+    "subtitle": "See how our AI adapts explanations for different age groups",
+    "defaultQuestion": "Why is the sky blue?",
+    "testQuestion": "Test Question",
+    "questionPlaceholder": "Enter a question to test...",
+    "testButton": "Test All Ages",
+    "sampleQuestionsTitle": "Sample Questions",
+    "sampleQuestions": {
+      "skyBlue": "Why is the sky blue?",
+      "rockets": "How do rockets work?",
+      "plants": "What makes plants grow?",
+      "sleep": "Why do we need to sleep?",
+      "computer": "How does a computer think?"
+    },
+    "responsesTitle": "Age-Appropriate Responses for: \"{{question}}\"",
+    "ageLabel": "Age {{age}} - {{group}}",
+    "complexityLevel": "Complexity Level: {{level}}/5",
+    "explanation": "Explanation",
+    "drawingSuggestion": "Drawing Suggestion",
+    "ageGroups": {
+      "earlyElementary": "Early Elementary (5-6)",
+      "elementary": "Elementary (7-8)",
+      "lateElementary": "Late Elementary (9-10)",
+      "middleSchool": "Middle School (11-12)",
+      "earlyHighSchool": "Early High School (13-15)"
+    },
+    "vocabulary": {
+      "simple": "Very simple words",
+      "elementary": "Elementary level",
+      "advanced": "Advanced terminology"
+    },
+    "complexity": {
+      "concrete": "Concrete examples",
+      "basic": "Basic concepts",
+      "advanced": "Advanced principles"
+    },
+    "analysis": {
+      "title": "Age-Appropriate Features",
+      "vocabulary": "Vocabulary",
+      "length": "Explanation Length",
+      "words": "{{count}} words",
+      "sentences": "Sentences",
+      "sentenceCount": "{{count}} sentences",
+      "complexity": "Complexity"
+    },
+    "instructions": {
+      "title": "Test Age-Appropriate Responses",
+      "description": "Enter a question above and click \"Test All Ages\" to see how our AI adapts explanations for children of different ages (6, 8, 10, 12, 14).",
+      "note": "This demonstrates our sophisticated age-based prompt engineering and ensures every child gets content that's perfectly suited to their developmental level."
+    }
+  }
+}

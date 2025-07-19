@@ -1,0 +1,528 @@
+{
+  "greeting": "¡Hola, bienvenido al Árbol del Saber!",
+  "features": {
+    "askAnything": {
+      "title": "¡Pregunta lo que sea, aprende de todo!",
+      "description": "Las mentes curiosas obtienen respuestas apropiadas para su edad impulsadas por IA avanzada, adaptadas perfectamente al nivel de comprensión de su hijo."
+    },
+    "knowledgeBlossom": {
+      "title": "¡Mira cómo florece el conocimiento!",
+      "description": "Vea cómo el viaje de aprendizaje de su hijo cobra vida a medida que el árbol mágico crece con cada pregunta que explora."
+    },
+    "safeLearning": {
+      "title": "Aprendizaje seguro y protegido",
+      "description": "Control parental completo con funciones de seguridad que cumplen con la COPPA. La curiosidad de su hijo está protegida y nutrida."
+    },
+    "title": "Por qué los padres nos aman",
+    "subtitle": "Diseñado pensando tanto en el aprendizaje como en la seguridad, creando el entorno perfecto para que las mentes curiosas florezcan."
+  },
+  "testimonials": {
+    "sarah": {
+      "text": "¡Mi hijo de 8 años pregunta de todo, desde dinosaurios hasta el espacio! Esta aplicación le da respuestas asombrosas que realmente puede entender.",
+      "author": "Sarah M.",
+      "role": "Mamá de 2"
+    },
+    "david": {
+      "text": "Finalmente, una aplicación educativa que crece con mi hija. Las características de seguridad me dan tranquilidad.",
+      "author": "David L.",
+      "role": "Padre"
+    },
+    "maria": {
+      "text": "¡El árbol visual es brillante! Mis hijos compiten para ver a quién le crecen más las ramas. ¡Aprender es divertido!",
+      "author": "Maria K.",
+      "role": "Madre que educa en casa"
+    },
+    "title": "Lo que dicen los padres"
+  },
+  "stats": {
+    "questionsAnswered": "Preguntas Respondidas",
+    "parentSatisfaction": "Satisfacción de Padres",
+    "ageRange": "Rango de Edad",
+    "learningAvailable": "Aprendizaje Disponible"
+  },
+  "hero": {
+    "title": {
+      "line1": "El Árbol del Saber <1>Mágico</1>",
+      "line2": ""
+    },
+    "subtitle": {
+      "line1": "Donde la curiosidad se convierte en sabiduría.",
+      "line2": "Aprendizaje seguro, atractivo e impulsado por IA",
+      "line3": "para niños de 5 a 15 años."
+    },
+    "buttons": {
+      "startLearning": "Comienza su viaje de aprendizaje",
+      "watchDemo": "Ver demostración"
+    },
+    "trustIndicators": {
+      "coppa": "Cumple con la COPPA",
+      "parentApproved": "Aprobado por los padres",
+      "childSafe": "Seguro para niños"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para plantar las semillas del conocimiento?",
+    "subtitle": "Únase a miles de familias que han descubierto la alegría de un aprendizaje seguro, atractivo e impulsado por IA.",
+    "buttons": {
+      "startFree": "Comience gratis hoy"
+    },
+    "noCreditCard": "No se requiere tarjeta de crédito • Cumple con la COPPA • Configuración instantánea",
+    "trustIndicators": {
+      "safe": "Seguro para niños",
+      "parentControlled": "Controlado por los padres",
+      "educational": "Contenido educativo"
+    }
+  },
+  "parentRegistration": {
+    "backButton": "Atrás",
+    "title": "Crear cuenta de padre",
+    "subtitle": "Configure su cuenta segura para administrar el viaje de aprendizaje de su hijo",
+    "formTitle": "Creación de cuenta segura",
+    "labels": {
+      "parentName": "Su nombre *",
+      "email": "Dirección de correo electrónico *",
+      "password": "Contraseña *",
+      "confirmPassword": "Confirmar contraseña *",
+      "terms": "Acepto los <a>Términos de Servicio</a> *",
+      "privacy": "Acepto la <a>Política de Privacidad</a> *"
+    },
+    "placeholders": {
+      "parentName": "Ingrese su nombre completo",
+      "email": "Ingrese su dirección de correo electrónico",
+      "password": "Cree una contraseña segura",
+      "confirmPassword": "Confirme su contraseña"
+    },
+    "errors": {
+      "parentName": {
+        "required": "El nombre del padre es obligatorio",
+        "minLength": "El nombre debe tener al menos 2 caracteres"
+      },
+      "email": {
+        "required": "El correo electrónico es obligatorio",
+        "invalid": "Por favor ingrese una dirección de correo electrónico válida"
+      },
+      "password": {
+        "required": "La contraseña es obligatoria",
+        "minLength": "La contraseña debe tener al menos 8 caracteres",
+        "strength": "La contraseña debe contener mayúsculas, minúsculas y un número"
+      },
+      "confirmPassword": {
+        "required": "Por favor confirme su contraseña",
+        "match": "Las contraseñas no coinciden"
+      },
+      "termsAccepted": "Debe aceptar los Términos de servicio",
+      "privacyAccepted": "Debe aceptar la Política de privacidad"
+    },
+    "passwordStrength": {
+      "label": "Seguridad de la contraseña:",
+      "weak": "Débil",
+      "fair": "Regular",
+      "good": "Buena",
+      "strong": "Fuerte"
+    },
+    "passwordsMatch": "Las contraseñas coinciden",
+    "legal": {
+      "title": "Información de privacidad y términos",
+      "description": "Al crear una cuenta, usted acepta nuestro enfoque de seguridad primero para la educación infantil. Todas las interacciones son monitoreadas y filtradas para contenido apropiado para la edad."
+    },
+    "links": {
+      "terms": "Términos de servicio",
+      "privacy": "Política de privacidad"
+    },
+    "buttons": {
+      "createAccount": "Crear cuenta segura",
+      "creatingAccount": "Creando cuenta..."
+    },
+    "securityNote": "Su información está encriptada y almacenada de forma segura. Nunca compartimos sus datos with terceros."
+  },
+  "childProfileCreation": {
+    "backButton": "Atrás",
+    "title": "Crear perfil de niño",
+    "subtitle": "Cuéntenos sobre su hijo para que podamos crear la experiencia de aprendizaje perfecta para él",
+    "formTitle": "Información de su hijo",
+    "labels": {
+      "displayName": "Nombre para mostrar del niño *",
+      "age": "Edad del niño *",
+      "parentalConsent": {
+        "strong": "Soy el padre o tutor legal",
+        "text": "<strong>Soy el padre o tutor legal</strong> de {{name}} y doy mi consentimiento para que use esta plataforma educativa. Entiendo que puedo monitorear su actividad y revocar este consentimiento en cualquier momento. *",
+        "thisChild": "este niño"
+      }
+    },
+    "placeholders": {
+      "displayName": "Ingrese el primer nombre o apodo de su hijo",
+      "age": "Edad"
+    },
+    "notes": {
+      "displayName": "Solo necesitamos un primer nombre o apodo, nunca un nombre completo por privacidad",
+      "age": "La edad nos ayuda a proporcionar contenido adecuado para el nivel de desarrollo de su hijo"
+    },
+    "errors": {
+      "displayName": {
+        "required": "El nombre para mostrar es obligatorio",
+        "minLength": "El nombre debe tener al menos 2 caracteres",
+        "maxLength": "El nombre debe tener 20 caracteres o menos",
+        "invalid": "El nombre solo puede contener letras y espacios"
+      },
+      "age": {
+        "min": "La edad debe ser de al menos 5 años",
+        "max": "La edad debe ser de 15 años o menos"
+      },
+      "parentalConsent": "Se requiere el consentimiento de los padres para crear un perfil de niño"
+    },
+    "ageGroups": {
+      "earlyElementary": "Primaria temprana (5-7)",
+      "elementary": "Primaria (8-10)",
+      "middleSchool": "Escuela secundaria (11-13)",
+      "earlyHighSchool": "Preparatoria temprana (14-15)"
+    },
+    "agePreview": {
+      "title": "¡Perfecto para {{name}}!",
+      "yourChild": "su hijo",
+      "earlyElementary": {
+        "1": "Explicaciones simples con muchas imágenes",
+        "2": "Conceptos básicos de ciencia y hechos de la naturaleza",
+        "3": "Contar, formas y divertidos juegos de matemáticas"
+      },
+      "elementary": {
+        "1": "Explicaciones más detalladas con ejemplos geniales",
+        "2": "Cómo funcionan las cosas y por qué suceden",
+        "3": "Resolución de problemas y pensamiento lógico"
+      },
+      "middleSchool": {
+        "1": "Procesos científicos y comprensión más profunda",
+        "2": "Ecosistemas complejos y conceptos tecnológicos",
+        "3": "Conceptos matemáticos avanzados y aplicaciones del mundo real"
+      },
+      "earlyHighSchool": {
+        "1": "Conceptos y teorías científicas avanzadas",
+        "2": "Pensamiento crítico y habilidades de análisis",
+        "3": "Razonamiento y aplicaciones matemáticas complejas"
+      }
+    },
+    "parentalConsent": {
+      "title": "Se requiere consentimiento de los padres",
+      "description": "Al marcar la casilla a continuación, confirma que es el padre o tutor legal de este niño y da su consentimiento para que use la plataforma El Árbol del Saber Mágico bajo su supervisión."
+    },
+    "buttons": {
+      "createProfile": "Crear perfil de {{name}}",
+      "creatingProfile": "Creando perfil...",
+      "child": "Niño"
+    },
+    "privacyNotice": {
+      "title": "Privacidad y Seguridad",
+      "description": "La información de su hijo está <strong>encriptada y nunca se comparte</strong>. Seguimos estrictas pautas de COPPA para proteger la privacidad de los niños y garantizar un entorno de aprendizaje seguro."
+    }
+  },
+  "domainSelection": {
+    "backButton": "Atrás",
+    "title": "Elige mundos de aprendizaje",
+    "subtitle": "Seleccione los dominios de aprendizaje que {{name}} explorará. Puede cambiarlos en cualquier momento desde el panel de control de sus padres.",
+    "domains": {
+      "science": {
+        "name": "Ciencia y Tecnología",
+        "description": "¡Explora las maravillas de cómo funcionan las cosas, desde cohetes hasta robots!",
+        "examples": {
+          "1": "¿Cómo vuelan los cohetes?",
+          "2": "¿Por qué el cielo es azul?",
+          "3": "¿Cómo funcionan las computadoras?"
+        },
+        "ageAppropriate": "Perfecto para mentes curiosas que aman entender cómo funcionan las cosas"
+      },
+      "nature": {
+        "name": "Naturaleza y Medio Ambiente",
+        "description": "¡Descubre animales asombrosos, plantas y nuestro hermoso planeta!",
+        "examples": {
+          "1": "¿Cómo se transforman las mariposas?",
+          "2": "¿Por qué los árboles pierden las hojas?",
+          "3": "¿Dónde viven los pingüinos?"
+        },
+        "ageAppropriate": "Ideal para los amantes de la naturaleza que quieren explorar el mundo vivo"
+      },
+      "math": {
+        "name": "Matemáticas y Lógica",
+        "description": "¡Haz que los números sean divertidos con patrones, acertijos y resolución de problemas!",
+        "examples": {
+          "1": "¿Por qué se repiten los patrones?",
+          "2": "¿Cómo contamos números grandes?",
+          "3": "¿Qué formas nos rodean?"
+        },
+        "ageAppropriate": "Ideal para pensadores lógicos que disfrutan resolviendo acertijos y entendiendo patrones"
+      }
+    },
+    "exampleQuestions": "Preguntas de ejemplo:",
+    "selected": "Seleccionado ✓",
+    "select": "Haga clic para seleccionar",
+    "summary": {
+      "title": "Viaje de Aprendizaje de {{name}}",
+      "description": "{{name}} explorará <strong>{{count}}</strong> mundo{{count, plural, one {} other {s}}} de aprendizaje asombroso{{count, plural, one {} other {s}}}:",
+      "remember": {
+        "title": "Recuerda:",
+        "description": "<strong>Recuerda:</strong> Puedes agregar o eliminar mundos de aprendizaje en cualquier momento desde tu panel de control parental. ¡Recomendamos comenzar con los tres para darle a {{name}} la experiencia mágica completa!"
+      },
+      "noSelection": "Por favor selecciona al menos un mundo de aprendizaje para que {{name}} explore."
+    },
+    "buttons": {
+      "settingUp": "Configurando los mundos de {{name}}...",
+      "startAdventure": "Comienza la aventura de {{name}}"
+    },
+    "info": {
+      "title": "Por qué preguntamos sobre los dominios de aprendizaje",
+      "description": "Al seleccionar dominios específicos, nos aseguramos de que {{name}} solo reciba preguntas y respuestas en las áreas que usted apruebe. Esto le da un control total sobre la experiencia de aprendizaje de su hijo mientras lo mantiene seguro y comprometido con contenido apropiado para su edad."
+    }
+  },
+  "parentDashboard": {
+    "title": "Panel de control para padres",
+    "subtitle": "Administre la experiencia de aprendizaje de su hijo",
+    "logoutButton": "Cerrar sesión",
+    "profile": {
+      "title": "Perfil de {{name}}",
+      "editButton": "Editar",
+      "labels": {
+        "displayName": "Nombre para mostrar",
+        "age": "Edad",
+        "profileCreated": "Perfil creado",
+        "lastActivity": "Última actividad"
+      },
+      "ageValue": "{{age}} años"
+    },
+    "domains": {
+      "title": "Dominios de aprendizaje",
+      "modifyButton": "Modificar",
+      "active": "Activo",
+      "disabled": "Desactivado",
+      "description": "{{name}} tiene acceso a <strong>{{count}}</strong> dominios de aprendizaje. Puede modificar estas selecciones en cualquier momento para personalizar su experiencia de aprendizaje.",
+      "science": {
+        "name": "Ciencia y Tecnología"
+      },
+      "nature": {
+        "name": "Naturaleza y Medio Ambiente"
+      },
+      "math": {
+        "name": "Matemáticas y Lógica"
+      }
+    },
+    "quickActions": {
+      "title": "Acciones rápidas",
+      "startLearning": "Iniciar sesión de aprendizaje",
+      "editProfile": "Editar perfil de niño",
+      "manageDomains": "Administrar dominios"
+    },
+    "safety": {
+      "title": "Seguridad y soporte",
+      "safeLearning": {
+        "title": "Entorno de aprendizaje seguro",
+        "description": "Todas las respuestas de la IA se filtran para obtener contenido apropiado para la edad"
+      },
+      "reportButton": "Reportar un problema",
+      "support": {
+        "text": "Para inquietudes urgentes, envíenos un correo electrónico directamente a",
+        "email": "support@magicalknowledgetree.com"
+      }
+    },
+    "report": {
+      "title": "Reportar un problema",
+      "description": "Describa el problema que encontró. Tomamos todos los informes en serio y los revisaremos dentro de las 24 horas.",
+      "placeholder": "Describe el problema...",
+      "cancelButton": "Cancelar",
+      "submitButton": "Enviar reporte",
+      "success": "Gracias por su informe. Lo revisaremos dentro de las 24 horas."
+    }
+  },
+  "mainApp": {
+    "title": "El <gradient>Árbol Mágico del Saber</gradient>",
+    "greeting": "¡Hola <strong>{{name}}</strong>!",
+    "subtitle": "¡Pregúntame cualquier cosa sobre <strong>ciencia</strong>, <strong>naturaleza</strong> o <strong>matemáticas</strong>! Te ayudaré a aprender con explicaciones divertidas e ilustraciones hermosas.",
+    "questionPlaceholder": "¿Sobre qué te gustaría aprender hoy?",
+    "domains": {
+      "science": {
+        "title": "Ciencia y Tecnología",
+        "description": "¡Aprende cómo funcionan las cosas, desde cohetes hasta robots!"
+      },
+      "nature": {
+        "title": "Naturaleza y Medio Ambiente",
+        "description": "¡Descubre animales asombrosos, plantas y nuestro hermoso planeta!"
+      },
+      "math": {
+        "title": "Matemáticas y Lógica",
+        "description": "¡Haz que los números sean divertidos con patrones, acertijos y resolución de problemas!"
+      }
+    },
+    "funFacts": {
+      "title": "¿Sabías que?",
+      "rocket": "<emoji>🚀</emoji> ¡Un cohete necesita ir a 40.000 km/h para escapar de la gravedad de la Tierra!",
+      "trees": "<emoji>🌳</emoji> ¡Los árboles pueden vivir miles de años y comunicarse entre ellos!",
+      "zero": "<emoji>🧮</emoji> ¡El número cero fue inventado en India hace más de 1.500 años!"
+    },
+    "errors": {
+      "failedToGetAnswer": "No se pudo obtener la respuesta",
+      "fallbackExplanation": "Estoy teniendo <strong>problemas</strong> con esa pregunta ahora mismo. ¿Puedes intentar preguntarla de otra manera?",
+      "fallbackDrawingSuggestion": "Un personaje de árbol amigable pensando",
+      "connectionError": "Lo siento, tengo problemas para conectarme en este momento. ¡Inténtalo de nuevo!",
+      "title": "¡Ups! Algo salió mal",
+      "tryAgainButton": "Intentar otra vez"
+    },
+    "footer": {
+      "madeWithLove": "Hecho con amor para las mentes jóvenes y curiosas",
+      "safeLearning": "Aprendizaje seguro, educativo y divertido para niños de 5 a 15 años"
+    }
+  },
+  "questionInput": {
+    "title": "Pregunta al Árbol del Saber",
+    "defaultQuestion": "¿Por qué el cielo es azul?",
+    "feedback": {
+      "great": "✨ ¡Excelente pregunta!",
+      "ready": "💭 ¡Estoy listo para ayudarte a aprender algo increíble!",
+      "keepGoing": "🌱 ¡Sigue así, cuéntame más!",
+      "perfect": "🚀 ¡Perfecto! ¡No puedo esperar para ayudarte a aprender!"
+    },
+    "buttons": {
+      "thinking": "Pensando...",
+      "ask": "¡Pregunta!"
+    },
+    "suggestions": {
+      "skyBlue": "¿Por qué el cielo es azul?",
+      "butterflies": "¿Cómo vuelan las mariposas?",
+      "blackHoles": "¿Qué son los agujeros negros?",
+      "plants": "¿Cómo crecen las plantas?"
+    }
+  },
+
+  "enhancedAnswer": {
+    "title": "Descubrimiento de Aprendizaje",
+    "ageAppropriate": "Explicación apropiada para {{age}} años",
+    "loading": "Cargando ilustración...",
+    "illustration": {
+      "alt": "Ilustración educativa"
+    },
+    "guide": {
+      "alt": "Guía de {{domain}}",
+      "title": "Guía de {{domain}}",
+      "subtitle": "¡Aquí para ayudarte a aprender!"
+    },
+    "explanation": {
+      "title": "Tu Respuesta"
+    },
+    "debug": {
+      "title": "Sugerencia de dibujo (Solo desarrollo)"
+    },
+    "buttons": {
+      "gotIt": "¡Entendido! 🌟"
+    }
+  },
+
+  "featureShowcase": {
+    "features": {
+      "tree": {
+        "title": "Árbol del Conocimiento en Crecimiento",
+        "description": "Observa cómo el viaje de aprendizaje de tu hijo cobra vida mientras las ramas crecen con cada pregunta explorada.",
+        "highlight": "Progreso Visual del Aprendizaje",
+        "demo": "El árbol interactivo crece con cada respuesta"
+      },
+      "ai": {
+        "title": "Respuestas Impulsadas por IA",
+        "description": "La IA avanzada proporciona explicaciones apropiadas para la edad, adaptadas perfectamente al nivel de comprensión de tu hijo.",
+        "highlight": "Contenido Apropiado para la Edad",
+        "demo": "Las respuestas se adaptan de 5 a 15 años"
+      },
+      "safety": {
+        "title": "Seguridad Completa",
+        "description": "Sistemas de seguridad multicapa aseguran que solo contenido educativo y apropiado llegue a tu hijo.",
+        "highlight": "Cumple con COPPA",
+        "demo": "Experiencia 100% controlada por los padres"
+      }
+    },
+    "demo": "Demostración",
+    "trust": {
+      "title": "Por Qué los Padres Confían en Nosotros",
+      "subtitle": "Construido pensando en la seguridad, educación y desarrollo infantil",
+      "educational": "Solo contenido educativo",
+      "guardrails": "Protecciones avanzadas de IA",
+      "dashboard": "Control del panel de padres",
+      "childFriendly": "Interfaz amigable para niños",
+      "educator": "Aprobado por educadores",
+      "engaging": "Animaciones atractivas"
+    },
+    "comparison": {
+      "title": "Más que Solo Preguntas y Respuestas",
+      "subtitle": "Un ecosistema de aprendizaje completo diseñado para mentes en crecimiento"
+    },
+    "difference": {
+      "title": "Lo que Nos Hace Diferentes",
+      "ageAppropriate": "Respuestas de IA apropiadas para la edad (5-15 años)",
+      "visual": "Aprendizaje visual con ilustraciones educativas",
+      "progressive": "Visualización progresiva del árbol del conocimiento",
+      "parental": "Control parental completo y supervisión",
+      "coppa": "Medidas de seguridad que cumplen con COPPA",
+      "content": "Contenido educativo de fuentes confiables"
+    },
+    "domains": {
+      "title": "Dominios de Aprendizaje",
+      "science": {
+        "name": "Ciencia y Tecnología",
+        "desc": "Espacio, inventos, cómo funcionan las cosas"
+      },
+      "nature": {
+        "name": "Naturaleza y Medio Ambiente",
+        "desc": "Animales, plantas, ecosistemas"
+      },
+      "math": {
+        "name": "Matemáticas y Lógica",
+        "desc": "Números, patrones, resolución de problemas"
+      }
+    }
+  },
+
+  "ageTesting": {
+    "title": "Prueba de IA Apropiada para la Edad",
+    "subtitle": "Observa cómo nuestra IA adapta las explicaciones para diferentes grupos de edad",
+    "defaultQuestion": "¿Por qué el cielo es azul?",
+    "testQuestion": "Pregunta de Prueba",
+    "questionPlaceholder": "Ingresa una pregunta para probar...",
+    "testButton": "Probar Todas las Edades",
+    "sampleQuestionsTitle": "Preguntas de Ejemplo",
+    "sampleQuestions": {
+      "skyBlue": "¿Por qué el cielo es azul?",
+      "rockets": "¿Cómo funcionan los cohetes?",
+      "plants": "¿Qué hace que las plantas crezcan?",
+      "sleep": "¿Por qué necesitamos dormir?",
+      "computer": "¿Cómo piensa una computadora?"
+    },
+    "responsesTitle": "Respuestas Apropiadas para la Edad: \"{{question}}\"",
+    "ageLabel": "Edad {{age}} - {{group}}",
+    "complexityLevel": "Nivel de Complejidad: {{level}}/5",
+    "explanation": "Explicación",
+    "drawingSuggestion": "Sugerencia de Dibujo",
+    "ageGroups": {
+      "earlyElementary": "Primaria Temprana (5-6)",
+      "elementary": "Primaria (7-8)",
+      "lateElementary": "Primaria Avanzada (9-10)",
+      "middleSchool": "Secundaria (11-12)",
+      "earlyHighSchool": "Preparatoria Temprana (13-15)"
+    },
+    "vocabulary": {
+      "simple": "Palabras muy simples",
+      "elementary": "Nivel primaria",
+      "advanced": "Terminología avanzada"
+    },
+    "complexity": {
+      "concrete": "Ejemplos concretos",
+      "basic": "Conceptos básicos",
+      "advanced": "Principios avanzados"
+    },
+    "analysis": {
+      "title": "Características Apropiadas para la Edad",
+      "vocabulary": "Vocabulario",
+      "length": "Longitud de la Explicación",
+      "words": "{{count}} palabras",
+      "sentences": "Oraciones",
+      "sentenceCount": "{{count}} oraciones",
+      "complexity": "Complejidad"
+    },
+    "instructions": {
+      "title": "Prueba de Respuestas Apropiadas para la Edad",
+      "description": "Ingresa una pregunta arriba y haz clic en \"Probar Todas las Edades\" para ver cómo nuestra IA adapta las explicaciones para niños de diferentes edades (6, 8, 10, 12, 14).",
+      "note": "Esto demuestra nuestra sofisticada ingeniería de indicaciones basada en la edad y asegura que cada niño reciba contenido perfectamente adaptado a su nivel de desarrollo."
+    }
+  }
+}
