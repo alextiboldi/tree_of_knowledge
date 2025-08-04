@@ -14,18 +14,8 @@ import {
   Lightbulb,
   AlertCircle,
 } from "lucide-react";
-
-interface Answer {
-  question: string;
-  explanation: string;
-  drawing_suggestion: string;
-}
-
-interface ChildContext {
-  age: number;
-  name?: string;
-  selectedDomains?: string[];
-}
+import { useAskQuestion } from "../hooks/useApi";
+import { ChildContext, Answer, ApiError } from "../lib/api";
 
 interface MainAppProps {
   onBackToDashboard: () => void;
@@ -34,46 +24,20 @@ interface MainAppProps {
 
 export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
   const { t } = useTranslation();
-  const [isLoading, setIsLoading] = useState(false);
   const [currentAnswer, setCurrentAnswer] = useState<Answer | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleQuestionSubmit = async (question: string) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("/api/ai/ask-question", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question,
-          childContext: childContext || {
-            age: 8,
-            name: undefined,
-            selectedDomains: ["science-technology"],
-          },
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to get answer");
-      }
-
-      const data = await response.json();
-
+  const askQuestionMutation = useAskQuestion({
+    onSuccess: (data, variables) => {
       if (data.success) {
         setCurrentAnswer({
-          question,
+          question: variables.question,
           explanation: data.explanation,
           drawing_suggestion: data.drawing_suggestion,
         });
       } else {
         // Even "failed" responses from our API are actually safe fallbacks
         setCurrentAnswer({
-          question,
+          question: variables.question,
           explanation:
             data.explanation ||
             "I'm having trouble with that question right now. Can you try asking it in a different way?",
@@ -81,19 +45,30 @@ export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
             data.drawing_suggestion || "A friendly tree character thinking",
         });
       }
-    } catch (error) {
+    },
+    onError: (error: ApiError) => {
       console.error("Error asking question:", error);
-      setError(
-        "Sorry, I'm having trouble connecting right now. Please try again!"
-      );
-    } finally {
-      setIsLoading(false);
-    }
+      // TanStack Query handles error state automatically
+    },
+  });
+
+  const handleQuestionSubmit = (question: string) => {
+    const effectiveChildContext = childContext || {
+      age: 8,
+      name: undefined,
+      selectedDomains: ["science-technology"],
+    };
+
+    askQuestionMutation.mutate({
+      question,
+      childContext: effectiveChildContext,
+    });
   };
 
   const handleCloseAnswer = () => {
     setCurrentAnswer(null);
-    setError(null);
+    // Clear any errors by resetting the mutation
+    askQuestionMutation.reset();
   };
 
   return (
@@ -141,7 +116,7 @@ export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
         >
           <QuestionInput
             onSubmit={handleQuestionSubmit}
-            isLoading={isLoading}
+            isLoading={askQuestionMutation.isPending}
             placeholder={t("mainApp.questionPlaceholder")}
           />
         </div>
@@ -257,7 +232,7 @@ export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
         </div>
 
         {/* Error Display */}
-        {error && (
+        {askQuestionMutation.isError && (
           <div className="mb-8 animate-bounce-subtle">
             <Card className="border-2 border-red-200 bg-red-50">
               <CardContent className="p-6 text-center">
@@ -278,7 +253,7 @@ export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
                   />
                 </p>
                 <button
-                  onClick={() => setError(null)}
+                  onClick={() => askQuestionMutation.reset()}
                   className="mt-4 px-6 py-2 bg-red-600 text-white rounded-full text-child-sm font-semibold hover:bg-red-700 transition-all duration-200 hover:scale-105"
                 >
                   {t("mainApp.errors.tryAgainButton")}
@@ -309,7 +284,7 @@ export function MainApp({ onBackToDashboard, childContext }: MainAppProps) {
       </div>
 
       {/* Answer Modal */}
-      <AIProcessingAnimation isVisible={isLoading} />
+      <AIProcessingAnimation isVisible={askQuestionMutation.isPending} />
 
       {currentAnswer && (
         <AnswerDisplay

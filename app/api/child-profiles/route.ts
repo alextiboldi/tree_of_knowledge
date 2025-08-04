@@ -157,6 +157,7 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({
+      onboardingComplete: session.user.onboardingComplete ?? false,
       children,
     });
   } catch (error) {

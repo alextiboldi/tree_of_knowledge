@@ -16,7 +16,7 @@ export function HeroTreeAnimation({ className = "" }: HeroTreeAnimationProps) {
         animate={{ scale: 1, opacity: 1 }}
         transition={{
           duration: 1.2,
-          type: "spring",
+          type: "spring" as const,
           damping: 20,
           stiffness: 100,
         }}

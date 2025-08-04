@@ -12,15 +12,16 @@ datasource db {
 
 // Parent account model
 model Parent {
-  id            String        @id @default(cuid())
-  email         String        @unique
-  passwordHash  String
-  name          String
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  children      Child[]       // Relation to Child model
-  accounts      Account[]     // NextAuth accounts
-  sessions      Session[]     // NextAuth sessions
+  id                  String        @id @default(cuid())
+  email               String        @unique
+  passwordHash        String
+  name                String
+  onboardingComplete  Boolean       @default(false)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  children            Child[]       // Relation to Child model
+  accounts            Account[]     // NextAuth accounts
+  sessions            Session[]     // NextAuth sessions
 }
 
 // NextAuth.js models for session management

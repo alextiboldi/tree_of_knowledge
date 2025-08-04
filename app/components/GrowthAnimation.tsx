@@ -41,7 +41,7 @@ export function GrowthAnimation({
       y: -100,
       transition: {
         duration: 1.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -57,7 +57,7 @@ export function GrowthAnimation({
       scale: [0.8, 1.2, 1.5],
       transition: {
         duration: 1.5,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };

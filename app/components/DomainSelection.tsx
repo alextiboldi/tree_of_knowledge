@@ -12,10 +12,12 @@ import {
   CheckCircle,
   ArrowRight,
 } from "lucide-react";
+import { useUpdateChildDomains } from "../hooks/useApi";
+import { ApiError } from "../lib/api";
 interface DomainSelectionProps {
   childName: string;
   childId?: string;
-  onComplete: (selectedDomains: string[]) => void;
+  onComplete: () => void;
   onBack: () => void;
 }
 
@@ -90,7 +92,18 @@ export function DomainSelection({
   const [selectedDomains, setSelectedDomains] = useState<string[]>(
     domains.map((domain) => domain.id)
   );
-  const [isLoading, setIsLoading] = useState(false);
+
+  const updateDomainsMutation = useUpdateChildDomains({
+    onSuccess: (data) => {
+      console.log("Domain selection successful:", data);
+      onComplete();
+    },
+    onError: (error: ApiError) => {
+      console.error("Domain selection failed:", error);
+      // For now, continue anyway - this is non-critical for the onboarding flow
+      onComplete();
+    },
+  });
 
   const toggleDomain = (domainId: string) => {
     setSelectedDomains((prev) => {
@@ -106,38 +119,15 @@ export function DomainSelection({
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (selectedDomains.length === 0 || !childId) {
       return;
     }
 
-    setIsLoading(true);
-
-    try {
-      // Call the domain selection API
-      const response = await fetch(`/api/child-profiles/${childId}/domains`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domains: selectedDomains }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        console.error("Domain selection failed:", data.error);
-        // For now, continue anyway - this is non-critical for the onboarding flow
-      } else {
-        console.log("Domain selection successful:", data);
-      }
-
-      onComplete(selectedDomains);
-    } catch (error) {
-      console.error("Domain selection error:", error);
-      // Continue with onboarding even if domain selection fails
-      onComplete(selectedDomains);
-    } finally {
-      setIsLoading(false);
-    }
+    updateDomainsMutation.mutate({
+      childId,
+      domains: selectedDomains,
+    });
   };
 
   return (
@@ -292,10 +282,12 @@ export function DomainSelection({
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Button
             onClick={handleSubmit}
-            disabled={selectedDomains.length === 0 || isLoading}
+            disabled={
+              selectedDomains.length === 0 || updateDomainsMutation.isPending
+            }
             className="bg-primary hover:bg-primary/90 text-white px-8 py-3 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
           >
-            {isLoading ? (
+            {updateDomainsMutation.isPending ? (
               <>
                 <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2" />
                 {t("domainSelection.buttons.settingUp", { name: childName })}

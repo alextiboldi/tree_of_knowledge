@@ -25,7 +25,7 @@ export function AIProcessingAnimation({
         className="bg-white rounded-2xl p-8 shadow-2xl max-w-md w-full"
         initial={{ scale: 0.8, y: 20 }}
         animate={{ scale: 1, y: 0 }}
-        transition={{ type: "spring", damping: 25, stiffness: 500 }}
+        transition={{ type: "spring" as const, damping: 25, stiffness: 500 }}
       >
         <div className="text-center space-y-6">
           {/* Animated Tree Icon */}

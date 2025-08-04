@@ -14,16 +14,12 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useTranslation, Trans } from "react-i18next";
+import { useCreateChild } from "../hooks/useApi";
+import { ChildProfileData, ApiError } from "../lib/api";
+
 interface ChildProfileCreationProps {
   onComplete: (childData: ChildProfileData) => void;
   onBack: () => void;
-}
-
-interface ChildProfileData {
-  id?: string; // Optional ID from database after creation
-  displayName: string;
-  age: number;
-  parentalConsent: boolean;
 }
 
 interface FormErrors {
@@ -44,7 +40,53 @@ export function ChildProfileCreation({
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isLoading, setIsLoading] = useState(false);
+
+  const createChildMutation = useCreateChild({
+    onSuccess: (data) => {
+      console.log("Child profile created successfully:", data);
+      // Pass the child data to the parent component
+      onComplete({
+        ...formData,
+        id: data.child.id, // Include the database ID
+      });
+    },
+    onError: (error: ApiError) => {
+      console.error("Child profile creation error:", error);
+
+      // Handle specific error cases
+      if (error.status === 401) {
+        setErrors({
+          displayName: t("childProfileCreation.errors.authentication"),
+        });
+      } else if (error.status === 400) {
+        // Server-side validation errors
+        if (error.data?.error?.includes("Display name")) {
+          setErrors({
+            displayName: error.data.error,
+          });
+        } else if (error.data?.error?.includes("Age")) {
+          setErrors({
+            age: error.data.error,
+          });
+        } else if (error.data?.error?.includes("consent")) {
+          setErrors({
+            parentalConsent: error.data.error,
+          });
+        } else {
+          setErrors({
+            displayName:
+              error.data?.error || t("childProfileCreation.errors.generic"),
+          });
+        }
+      } else {
+        // Generic error handling
+        setErrors({
+          displayName:
+            error.message || t("childProfileCreation.errors.generic"),
+        });
+      }
+    },
+  });
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -86,82 +128,22 @@ export function ChildProfileCreation({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) {
       return;
     }
 
-    setIsLoading(true);
+    // Clear any previous errors
+    setErrors({});
 
-    try {
-      // Call the child profile creation API
-      const response = await fetch("/api/child-profiles", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          displayName: formData.displayName.trim(),
-          age: formData.age,
-          parentalConsent: formData.parentalConsent,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        // Handle specific error cases
-        if (response.status === 401) {
-          setErrors({
-            displayName: t("childProfileCreation.errors.authentication"),
-          });
-        } else if (response.status === 400) {
-          // Server-side validation errors
-          if (data.error?.includes("Display name")) {
-            setErrors({
-              displayName: data.error,
-            });
-          } else if (data.error?.includes("Age")) {
-            setErrors({
-              age: data.error,
-            });
-          } else if (data.error?.includes("consent")) {
-            setErrors({
-              parentalConsent: data.error,
-            });
-          } else {
-            setErrors({
-              displayName:
-                data.error || t("childProfileCreation.errors.generic"),
-            });
-          }
-        } else {
-          // Generic error handling
-          setErrors({
-            displayName: data.error || t("childProfileCreation.errors.generic"),
-          });
-        }
-        return;
-      }
-
-      // Profile creation successful
-      console.log("Child profile created successfully:", data);
-
-      // Pass the child data to the parent component
-      onComplete({
-        ...formData,
-        id: data.child.id, // Include the database ID
-      });
-    } catch (error) {
-      console.error("Child profile creation error:", error);
-      setErrors({
-        displayName: t("childProfileCreation.errors.network"),
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Trigger the mutation
+    createChildMutation.mutate({
+      displayName: formData.displayName.trim(),
+      age: formData.age,
+      parentalConsent: formData.parentalConsent,
+    });
   };
 
   const handleInputChange = (
@@ -444,10 +426,10 @@ export function ChildProfileCreation({
               {/* Submit Button */}
               <Button
                 type="submit"
-                disabled={isLoading}
+                disabled={createChildMutation.isPending}
                 className="w-full bg-primary hover:bg-primary/90 text-white py-3 text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-200"
               >
-                {isLoading ? (
+                {createChildMutation.isPending ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent mr-2" />
                     {t("childProfileCreation.buttons.creatingProfile")}

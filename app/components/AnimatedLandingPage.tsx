@@ -127,7 +127,7 @@ export function AnimatedLandingPage({
       opacity: 1,
       transition: {
         duration: 1.2,
-        type: "spring",
+        type: "spring" as const,
         damping: 20,
       },
     },
@@ -141,7 +141,7 @@ export function AnimatedLandingPage({
       transition: {
         duration: 2,
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };

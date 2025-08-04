@@ -1,11 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TreePine, Brain, Send, User } from "lucide-react";
+import { useMultipleAgeQuestions } from "../hooks/useApi";
+import { ChildContext } from "../lib/api";
 
 interface TestResponse {
   age: number;
@@ -13,17 +15,10 @@ interface TestResponse {
   drawing_suggestion: string;
 }
 
-interface ChildContext {
-  age: number;
-  name?: string;
-  selectedDomains?: string[];
-}
-
 export function AgeTestingInterface() {
   const { t } = useTranslation();
   const [question, setQuestion] = useState(t("ageTesting.defaultQuestion"));
   const [responses, setResponses] = useState<TestResponse[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   const testAges = [6, 8, 10, 12, 14];
   const sampleQuestions = [
@@ -34,54 +29,38 @@ export function AgeTestingInterface() {
     t("ageTesting.sampleQuestions.computer"),
   ];
 
-  const testAgeResponses = async () => {
+  const multipleAgeQuestionsMutation = useMultipleAgeQuestions();
+
+  // Handle success and error using useEffect
+  useEffect(() => {
+    if (
+      multipleAgeQuestionsMutation.isSuccess &&
+      multipleAgeQuestionsMutation.data
+    ) {
+      setResponses(multipleAgeQuestionsMutation.data as TestResponse[]);
+    }
+    if (multipleAgeQuestionsMutation.isError) {
+      console.error(
+        "Error testing age responses:",
+        multipleAgeQuestionsMutation.error
+      );
+      setResponses([]);
+    }
+  }, [
+    multipleAgeQuestionsMutation.isSuccess,
+    multipleAgeQuestionsMutation.isError,
+    multipleAgeQuestionsMutation.data,
+    multipleAgeQuestionsMutation.error,
+  ]);
+
+  const testAgeResponses = () => {
     if (!question.trim()) return;
 
-    setIsLoading(true);
     setResponses([]);
-
-    try {
-      const allResponses: TestResponse[] = [];
-
-      for (const age of testAges) {
-        const childContext: ChildContext = {
-          age,
-          name: `TestChild${age}`,
-          selectedDomains: [
-            "science-technology",
-            "nature-environment",
-            "math-logic",
-          ],
-        };
-
-        const response = await fetch("/api/ai/ask-question", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            question,
-            childContext,
-          }),
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          allResponses.push({
-            age,
-            explanation: data.explanation,
-            drawing_suggestion: data.drawing_suggestion,
-          });
-        }
-      }
-
-      setResponses(allResponses);
-    } catch (error) {
-      console.error("Error testing age responses:", error);
-    } finally {
-      setIsLoading(false);
-    }
+    multipleAgeQuestionsMutation.mutate({
+      question,
+      ages: testAges,
+    });
   };
 
   const getAgeGroupLabel = (age: number) => {
@@ -146,10 +125,12 @@ export function AgeTestingInterface() {
               />
               <Button
                 onClick={testAgeResponses}
-                disabled={isLoading || !question.trim()}
+                disabled={
+                  multipleAgeQuestionsMutation.isPending || !question.trim()
+                }
                 className="bg-primary hover:bg-primary/90"
               >
-                {isLoading ? (
+                {multipleAgeQuestionsMutation.isPending ? (
                   <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2" />
                 ) : (
                   <Send className="h-4 w-4 mr-2" />
@@ -272,7 +253,7 @@ export function AgeTestingInterface() {
         )}
 
         {/* Instructions */}
-        {responses.length === 0 && !isLoading && (
+        {responses.length === 0 && !multipleAgeQuestionsMutation.isPending && (
           <Card className="shadow-lg">
             <CardContent className="p-6 text-center">
               <Brain className="h-12 w-12 text-primary mx-auto mb-4" />

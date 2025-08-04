@@ -14,12 +14,30 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user, trigger }) {
       if (user) {
         token.id = user.id;
         token.email = user.email;
         token.name = user.name;
       }
+
+      // Fetch onboardingComplete status when token is created or on session update
+      if (token.id && (user || trigger === "update")) {
+        try {
+          const parent = await prisma.parent.findUnique({
+            where: { id: token.id as string },
+            select: { onboardingComplete: true },
+          });
+
+          if (parent) {
+            token.onboardingComplete = parent.onboardingComplete;
+          }
+        } catch (error) {
+          console.error("Error fetching onboarding status:", error);
+          // Keep existing value if fetch fails
+        }
+      }
+
       return token;
     },
     async session({ session, token }) {
@@ -27,6 +45,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         session.user.id = token.id as string;
         session.user.email = token.email as string;
         session.user.name = token.name as string;
+        session.user.onboardingComplete = token.onboardingComplete as boolean;
       }
       return session;
     },

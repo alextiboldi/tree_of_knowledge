@@ -15,6 +15,8 @@ import {
   ArrowLeft,
 } from "lucide-react";
 import { useTranslation, Trans } from "react-i18next";
+import { useRegister } from "../hooks/useApi";
+import { ApiError } from "../lib/api";
 
 interface ParentRegistrationProps {
   onBack: () => void;
@@ -58,6 +60,48 @@ export function ParentRegistration({
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  const registerMutation = useRegister({
+    onSuccess: async (data) => {
+      console.log("Registration successful:", data);
+
+      // Automatically sign in the user
+      try {
+        const signInResult = await signIn("credentials", {
+          email: formData.email,
+          password: formData.password,
+          redirect: false,
+        });
+
+        if (signInResult?.error) {
+          console.error("Auto sign-in failed:", signInResult.error);
+          // Still call onSuccess as registration was successful
+          // User can manually sign in later
+        }
+
+        onSuccess();
+      } catch (error) {
+        console.error("Auto sign-in error:", error);
+        onSuccess(); // Continue with onboarding
+      }
+    },
+    onError: (error: ApiError) => {
+      console.error("Registration failed:", error);
+
+      // Handle specific error cases
+      if (error.status === 409) {
+        setErrors({ email: t("parentRegistration.errors.email.exists") });
+      } else {
+        // Generic error handling
+        setErrors({
+          email: error.message || t("parentRegistration.errors.generic"),
+        });
+      }
+    },
+  });
+
+  // Computed loading state - true if either login (isLoading) or register mutation is pending
+  const isSubmitting = isLoading || registerMutation.isPending;
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -165,67 +209,20 @@ export function ParentRegistration({
     }
   };
 
-  const handleRegister = async (): Promise<void> => {
+  const handleRegister = (): void => {
     if (!validateForm()) {
       return;
     }
 
-    setIsLoading(true);
+    // Clear any previous errors
+    setErrors({});
 
-    try {
-      // Call the actual registration API
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          name: formData.parentName,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        // Handle specific error cases
-        if (response.status === 409) {
-          setErrors({ email: t("parentRegistration.errors.email.exists") });
-        } else {
-          // Generic error handling
-          setErrors({
-            email: data.error || t("parentRegistration.errors.generic"),
-          });
-        }
-        return;
-      }
-
-      // Registration successful - now sign the user in
-      console.log("Registration successful:", data);
-
-      // Automatically sign in the user
-      const signInResult = await signIn("credentials", {
-        email: formData.email,
-        password: formData.password,
-        redirect: false,
-      });
-
-      if (signInResult?.error) {
-        console.error("Auto sign-in failed:", signInResult.error);
-        // Still call onSuccess as registration was successful
-        // User can manually sign in later
-      }
-
-      onSuccess();
-    } catch (error) {
-      console.error("Registration failed:", error);
-      setErrors({
-        email: t("parentRegistration.errors.network"),
-      });
-    } finally {
-      setIsLoading(false);
-    }
+    // Trigger the registration mutation
+    registerMutation.mutate({
+      email: formData.email,
+      password: formData.password,
+      name: formData.parentName,
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent): Promise<void> => {
@@ -234,7 +231,7 @@ export function ParentRegistration({
     if (isLoginMode) {
       await handleLogin();
     } else {
-      await handleRegister();
+      handleRegister();
     }
   };
 
@@ -354,7 +351,7 @@ export function ParentRegistration({
                         ? "border-red-500 focus:ring-red-500"
                         : ""
                     }`}
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   />
                   {errors.parentName && (
                     <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
@@ -382,7 +379,7 @@ export function ParentRegistration({
                   className={`text-parent-sm ${
                     errors.email ? "border-red-500 focus:ring-red-500" : ""
                   }`}
-                  disabled={isLoading}
+                  disabled={isSubmitting}
                 />
                 {errors.email && (
                   <p className="text-parent-xs text-red-600 flex items-center gap-1 animate-slide-in-left">
@@ -412,7 +409,7 @@ export function ParentRegistration({
                     className={`text-parent-sm pr-10 ${
                       errors.password ? "border-red-500 focus:ring-red-500" : ""
                     }`}
-                    disabled={isLoading}
+                    disabled={isSubmitting}
                   />
                   <button
                     type="button"
@@ -489,7 +486,7 @@ export function ParentRegistration({
                           ? "border-red-500 focus:ring-red-500"
                           : ""
                       }`}
-                      disabled={isLoading}
+                      disabled={isSubmitting}
                     />
                     <button
                       type="button"
@@ -619,10 +616,10 @@ export function ParentRegistration({
               {/* Submit Button */}
               <Button
                 type="submit"
-                disabled={isLoading}
+                disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-primary/90 text-white text-parent-base font-medium py-3 transition-all duration-300 hover:scale-105 disabled:hover:scale-100"
               >
-                {isLoading ? (
+                {isSubmitting ? (
                   <div className="flex items-center gap-2">
                     <div className="h-4 w-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
                     {isLoginMode

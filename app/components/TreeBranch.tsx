@@ -70,7 +70,7 @@ export function TreeBranch({
       opacity: 1,
       transition: {
         duration: 0.5,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
     stable: {
@@ -78,7 +78,7 @@ export function TreeBranch({
       opacity: 1,
       transition: {
         duration: 0.3,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };

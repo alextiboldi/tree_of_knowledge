@@ -84,6 +84,12 @@ export async function POST(
       })),
     });
 
+    // Mark parent's onboarding as complete since they've finished the full flow
+    await prisma.parent.update({
+      where: { id: session.user.id },
+      data: { onboardingComplete: true },
+    });
+
     // Get the child with updated domain selections
     const updatedChild = await prisma.child.findUnique({
       where: { id: childId },
@@ -123,7 +129,7 @@ export async function POST(
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { childId: string } }
+  { params }: { params: Promise<{ childId: string }> }
 ) {
   try {
     // Get the current session to ensure parent is authenticated
@@ -136,7 +142,7 @@ export async function GET(
       );
     }
 
-    const { childId } = params;
+    const { childId } = await params;
 
     // Verify that the child belongs to the authenticated parent
     const child = await prisma.child.findFirst({
